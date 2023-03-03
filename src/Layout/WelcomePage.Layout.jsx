@@ -24,7 +24,7 @@ const WelcomePageLayout = (props) => {
       <Header handleToggleNav={toggleNav} isShow={show}>
         <button
           className="space-x-2 rounded-md self-center py-1 text-white
-                   bg-MdBlue flex flex-row items-center px-3 text-2xl font-bold"
+          border-2 border-white flex flex-row items-center px-3 text-2xl font-bold"
         >
           <HiArrowRightOnRectangle />
           <span> Sign In </span>

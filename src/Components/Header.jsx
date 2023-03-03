@@ -3,7 +3,7 @@ import "../index.css";
 
 export default function Header(props) {
   return (
-    <header className={`header ${props.isShow ? "space-toggle" : null} p-0 shadow-md`}>
+    <header className={`header ${props.isShow ? "space-toggle" : null} p-0 `}>
       <div className="header-toggle" onClick={props.handleToggleNav}>
         <svg
           viewBox="0 0 100 100"

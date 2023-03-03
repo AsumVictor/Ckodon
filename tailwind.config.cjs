@@ -11,7 +11,13 @@ module.exports = {
         MdBlue: '#2455FE',
         MdBlue500: '#15A4FE',
         DeepBlue: '#310BFE',
-      }
+      },
+    fontSize:{
+      18: '18px'
+    },
+    padding: {
+      15: '15px'
+    }
     },
   },
   plugins: [],
