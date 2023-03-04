@@ -1,11 +1,11 @@
 import React from 'react';
-import ErrorPage from './Pages/ErrorPage';
-import WelcomePage from './Pages/WelcomePage';
 import "./App.css";
+import LoginPage from './Pages/LoginPage';
+
 
 function App() {
   return(
-    <WelcomePage />
+    <LoginPage />
   )
 }
 

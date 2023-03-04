@@ -51,6 +51,21 @@ main {
   z-index: 99;
 }
 
+.changeColor{
+  background-color: white;
+  box-shadow: 0px 1px 20px rgba(4, 58, 173, 0.575);
+}
+
+.navSignin{
+  color: white;
+  border-color: white;
+}
+
+.changeColor .navSignin{
+  color: var(--first-color);
+  border-color: var(--first-color);
+}
+
 .header-toggle {
   font-size: 1.25rem;
   cursor: pointer;
@@ -98,10 +113,18 @@ main {
   user-select: none;
 }
 
-.line {
+.changeColor .line {
   fill: none;
   transition: stroke-dasharray 0.3s, stroke-dashoffset 0.3s;
-  stroke: #000;
+  stroke: #000000;
+  stroke-width: 5.5;
+  stroke-linecap: round;
+}
+
+.line {
+  stroke: #ffffff;
+  fill: none;
+  transition: stroke-dasharray 0.3s, stroke-dashoffset 0.3s;
   stroke-width: 5.5;
   stroke-linecap: round;
 }
@@ -153,7 +176,6 @@ main {
 .call-to-action{
   background-color: rgba(1, 5, 63, 0.432);
 }
-
 
 
 

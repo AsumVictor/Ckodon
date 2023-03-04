@@ -13,23 +13,38 @@ import {
 } from "react-icons/hi2";
 
 const WelcomePageLayout = (props) => {
+  //Navigation
   const [show, setShow] = useState(false);
-
   function toggleNav() {
     setShow((prevShow) => !prevShow);
   }
 
+  //Scroll Effect
+  const [colorChange, setColorchange] = useState(false);
+  const changeNavbarColor = () =>{
+     if(window.scrollY >= 50){
+       setColorchange(true);
+     }
+     else{
+       setColorchange(false);
+     }
+  };
+  window.addEventListener('scroll', changeNavbarColor);
+
+
   return (
     <main>
-      <Header handleToggleNav={toggleNav} isShow={show}>
-        <button
-          className="space-x-2 rounded-md self-center py-1 text-white
-          border-2 border-white flex flex-row items-center px-3 text-2xl font-bold"
-        >
-          <HiArrowRightOnRectangle />
-          <span> Sign In </span>
-        </button>
-      </Header>
+      <div className={`WelcomeHeader${colorChange? 'shadow-md bg-white': 'bg-transparent'}`}>
+        <Header handleToggleNav={toggleNav} isShow={show} extraClass={`${colorChange? 'changeColor' : null}`}>
+          <button
+            className="navSignin space-x-2 rounded-md self-center
+          border-2 flex flex-row items-center px-3 text-2xl font-bold"
+          >
+            <HiArrowRightOnRectangle />
+            <span> Sign In </span>
+          </button>
+        </Header>
+      </div>
       <SideNav isShow={show}>
         <div className="flex flex-col mt-10">
           <img src={Logo} alt="Logo" className={`${show ? null : "hide"}`} />

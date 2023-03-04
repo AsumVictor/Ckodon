@@ -27,18 +27,5 @@ export default [
     story:
       "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quod, corrupti dolores, voluptate dicta tempora cumque minima quia quo suscipit nobis corporis, quibusdam repellat facere rerum explicabo doloribus enim esse voluptas",
   },
-  {
-    image: "logoWhite.JPG",
-    title: "Sample Article Title",
-    date: "sample date",
-    story:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quod, corrupti dolores, voluptate dicta tempora cumque minima quia quo suscipit nobis corporis, quibusdam repellat facere rerum explicabo doloribus enim esse voluptas",
-  },
-  {
-    image: "logoWhite.JPG",
-    title: "Sample Article Title",
-    date: "sample date",
-    story:
-      "Lorem, ipsum dolor sit amet consectetur adipisicing elit. Quod, corrupti dolores, voluptate dicta tempora cumque minima quia quo suscipit nobis corporis, quibusdam repellat facere rerum explicabo doloribus enim esse voluptas",
-  },
+  
 ];

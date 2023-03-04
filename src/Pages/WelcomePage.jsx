@@ -60,7 +60,7 @@ let articles = SampleData.map((articleData)=>{
           </button>
         </div>
       </section>
-      <section className="info w-full flex flex-col md:flex-row px-20 pb-20 justify-between">
+      <section className="info w-full flex flex-col md:flex-row px-10 pb-20 justify-between">
         <aside className="w-full md:w-5/12">
           <section className="mt-10">
             <h3 className="text-2xl font-bold">Mission</h3>
@@ -102,7 +102,7 @@ let articles = SampleData.map((articleData)=>{
               To be eligible for CKODON scholarships, students must meet the
               following criteria:
             </p>
-            <ul>
+            <ul className="list-disc">
                 <li>Be committed to achieving their academic and career goals.</li>
                 <li>Have a strong academic record, with a minimum GPA of NAN</li>
             </ul>
