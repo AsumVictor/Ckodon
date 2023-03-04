@@ -1,9 +1,15 @@
-import React from "react";
+import React , {useState} from "react";
 import "../css/loginpage.css";
-import { HiBadgeCheck, HiLogin } from "react-icons/hi";
+import { HiBadgeCheck } from "react-icons/hi";
 import { HiArrowRightOnRectangle } from "react-icons/hi2";
+import Banner from "../assets/banner.png";
 
 export default function LoginPage() {
+
+    const [formData, setFormData] = useState({
+        
+    })
+
   function handleFormData() {
     console.log("Data Updated");
   }
@@ -25,8 +31,10 @@ export default function LoginPage() {
   return (
     <main className="flex flex-row px-0">
       <section className="hidden md:w-5/12 md:flex md:flex-col justify-center bg-MdBlue py-10">
-        <h1 className="text-4xl p-10 font-bold text-white">The Impossibility, Our Speciality</h1>
-        <img src="" alt="Logo" />
+        <h1 className="text-4xl p-10 font-bold text-white">
+          The Impossibility, Our Speciality
+        </h1>
+        <img src={Banner} alt="Logo" />
       </section>
       <section className="w-full flex flex-col items-center md:w-7/12 py-10">
         <h2 className="text-center text-MdBlue font-bold text-4xl mt-10">
@@ -49,6 +57,7 @@ export default function LoginPage() {
                   id="student"
                   name="role"
                   value={"student"}
+                  onChange={handleFormData}
                 />
 
                 <div className="label flex flex-col items-center relative">
@@ -61,7 +70,13 @@ export default function LoginPage() {
               </label>
 
               <label className="radio" htmlFor="mentor">
-                <input type="radio" id="mentor" name="role" value={"mentor"} />
+                <input
+                  type="radio"
+                  id="mentor"
+                  name="role"
+                  value={"mentor"}
+                  onChange={handleFormData}
+                />
                 <div className="label flex flex-col items-center relative">
                   <img src="/images/mentorLogo.png" alt="Mentor" />
                   <p className="font-bold">Mentor</p>
@@ -72,7 +87,13 @@ export default function LoginPage() {
               </label>
 
               <label className="radio" htmlFor="admin">
-                <input type="radio" id="admin" name="role" value={"admin"} />
+                <input
+                  type="radio"
+                  id="admin"
+                  name="role"
+                  value={"admin"}
+                  onChange={handleFormData}
+                />
                 <div className="label flex flex-col items-center relative">
                   <img src="/images/adminLogo.png" alt="Admin" />
                   <p className="font-bold">Admin</p>
@@ -91,9 +112,10 @@ export default function LoginPage() {
             <input
               type="email"
               id="user-email"
-              name="user-email"
+              name="userEmail"
               onFocus={FocusInput}
               onBlur={BlurInput}
+              onChange={handleFormData}
             />
           </div>
 
@@ -104,9 +126,10 @@ export default function LoginPage() {
             <input
               type="password"
               id="user-password"
-              name="user-password"
+              name="userPassword"
               onFocus={FocusInput}
               onBlur={BlurInput}
+              onChange={handleFormData}
             />
           </div>
 
@@ -120,7 +143,7 @@ export default function LoginPage() {
             Log in <HiArrowRightOnRectangle />
           </button>
           <p className="mt-10 ">
-            Need an Account:{" "}
+            Need an Account:
             <a href="#" className="text-MdBlue font-bold underline">
               Apply
             </a>
