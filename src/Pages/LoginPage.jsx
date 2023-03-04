@@ -1,17 +1,24 @@
-import React , {useState} from "react";
+import React, { useState } from "react";
 import "../css/loginpage.css";
 import { HiBadgeCheck } from "react-icons/hi";
 import { HiArrowRightOnRectangle } from "react-icons/hi2";
 import Banner from "../assets/banner.png";
 
 export default function LoginPage() {
+  const [formData, setFormData] = useState({
+    userEmail: "",
+    userPassword: "",
+    userRole: "",
+  });
 
-    const [formData, setFormData] = useState({
-        
-    })
-
-  function handleFormData() {
-    console.log("Data Updated");
+  function handleFormData(event) {
+    const { name, value } = event.target;
+    setFormData((prevData) => {
+      return {
+        ...prevData,
+        [name]: value,
+      };
+    });
   }
 
   function FocusInput(event) {
@@ -25,16 +32,19 @@ export default function LoginPage() {
 
   function handleSubmit(event) {
     event.preventDefault();
-    console.log("Submitted");
   }
 
   return (
-    <main className="flex flex-row px-0">
-      <section className="hidden md:w-5/12 md:flex md:flex-col justify-center bg-MdBlue py-10">
+    <main className="flex flex-row px-0 flex-wrap">
+      <section className="hidden md:w-5/12 md:flex md:flex-col justify-center
+       bg-MdBlue py-10 fixed" style={{height:'100vh'}}>
         <h1 className="text-4xl p-10 font-bold text-white">
           The Impossibility, Our Speciality
         </h1>
         <img src={Banner} alt="Logo" />
+      </section>
+      <section className="hidden md:w-5/12 md:flex  " style={{height:'100vh'}}>
+        
       </section>
       <section className="w-full flex flex-col items-center md:w-7/12 py-10">
         <h2 className="text-center text-MdBlue font-bold text-4xl mt-10">
@@ -54,10 +64,12 @@ export default function LoginPage() {
               <label htmlFor="student" className="radio">
                 <input
                   type="radio"
+                  value="student"
                   id="student"
-                  name="role"
-                  value={"student"}
+                  name="userRole"
+                  checked={formData.userRole == "student"}
                   onChange={handleFormData}
+                  required
                 />
 
                 <div className="label flex flex-col items-center relative">
@@ -72,10 +84,12 @@ export default function LoginPage() {
               <label className="radio" htmlFor="mentor">
                 <input
                   type="radio"
+                  value="mentor"
                   id="mentor"
-                  name="role"
-                  value={"mentor"}
+                  name="userRole"
+                  checked={formData.userRole == "mentor"}
                   onChange={handleFormData}
+                  required
                 />
                 <div className="label flex flex-col items-center relative">
                   <img src="/images/mentorLogo.png" alt="Mentor" />
@@ -89,10 +103,12 @@ export default function LoginPage() {
               <label className="radio" htmlFor="admin">
                 <input
                   type="radio"
+                  value="admin"
                   id="admin"
-                  name="role"
-                  value={"admin"}
+                  name="userRole"
+                  checked={formData.userRole == "admin"}
                   onChange={handleFormData}
+                  required
                 />
                 <div className="label flex flex-col items-center relative">
                   <img src="/images/adminLogo.png" alt="Admin" />
@@ -116,6 +132,7 @@ export default function LoginPage() {
               onFocus={FocusInput}
               onBlur={BlurInput}
               onChange={handleFormData}
+              required
             />
           </div>
 
@@ -130,6 +147,7 @@ export default function LoginPage() {
               onFocus={FocusInput}
               onBlur={BlurInput}
               onChange={handleFormData}
+              required
             />
           </div>
 
