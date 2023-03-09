@@ -34,7 +34,6 @@ const WelcomePageLayout = (props) => {
 
   return (
     <main>
-      <div className={`WelcomeHeader${colorChange? 'shadow-md bg-white': 'bg-transparent'}`}>
         <Header handleToggleNav={toggleNav} isShow={show} extraClass={`${colorChange? 'changeColor' : null}`}>
           <button
             className="navSignin space-x-2 rounded-md self-center
@@ -44,7 +43,6 @@ const WelcomePageLayout = (props) => {
             <span> Sign In </span>
           </button>
         </Header>
-      </div>
       <SideNav isShow={show}>
         <div className="flex flex-col mt-10">
           <img src={Logo} alt="Logo" className={`${show ? null : "hide"}`} />

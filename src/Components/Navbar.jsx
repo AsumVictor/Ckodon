@@ -1,16 +1,17 @@
+
 import React from "react";
 import "../index.css";
 
 export default function Header(props) {
   return (
     <header
-      className={`header ${props.isShow ? "space-toggle" : null} ${props.extraClass} p-0 `}
+      className={`navbar ${props.isShow ? "space-toggle" : null} p-0 changeColor `}
     >
       <div className="header-toggle" onClick={props.handleToggleNav}>
         <svg
           viewBox="0 0 100 100"
           width="70"
-          className={`ham ham2 ${props.isShow ? "active" : ""}`}
+          className={`relative ham ham2 ${props.isShow ? "active" : ""}`}
         >
           <path
             class="line top"

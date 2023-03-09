@@ -10,7 +10,7 @@ export default function (props) {
         <img
           src={`./images/${props.image}`}
           alt={props.title}
-          style={{ height: "184px",width:'260px' }}
+          style={{ height: "184px", width: "260px" }}
         />
       </div>
       <div className="w-full px-15 flex justify-center flex-col">

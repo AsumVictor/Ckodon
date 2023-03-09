@@ -12,7 +12,7 @@ export default function ErrorPage() {
         <Lottie animationData={Notfound} loop={true}  style={{width:500}} />
       </div>
       <h1 className="font-bold text-2xl md:text-4xl text-center">Page Not Found</h1>
-      <h2> <HiAnnotation /> Return to Home page</h2>
+      <h2> Return to Home page</h2>
     </main>
   );
 }

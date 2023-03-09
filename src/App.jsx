@@ -1,12 +1,11 @@
-import React from 'react';
+import React from "react";
 import "./App.css";
-import LoginPage from './Pages/LoginPage';
-
+import StudentLayout from "./Pages/ApplyPage";
 
 function App() {
-  return(
-    <LoginPage />
+  return (
+    <StudentLayout />
   )
 }
 
-export default App
+export default App;
