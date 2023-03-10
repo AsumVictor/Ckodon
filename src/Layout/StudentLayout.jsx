@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import Navbar from "../Components/Navbar";
 import SideNav from "../Components/Sidenav";
+import { NavLink, Link, Outlet } from "react-router-dom";
 import NoticationIcon from "../Components/notificationIcon";
 import {
   HiCurrencyDollar,
@@ -75,7 +76,7 @@ const StudentLayout = (props) => {
     {
       text: "reviews",
       icon: <HiClipboardList />,
-      path: "/",
+      path: "/reviews",
     },
     {
       text: "chat",
@@ -84,12 +85,21 @@ const StudentLayout = (props) => {
     },
   ];
 
+  const activeStyles = {
+    backgroundColor: 'white',
+    color: "#2455fe",
+  };
+
   const sidelinks = links.map((sidelink) => {
     return (
-      <li className="sideNav-li">
-        {sidelink.icon} 
-        <span>{sidelink.text}</span>
-      </li>
+      <NavLink
+        className="sideNav-li"
+        to={`${sidelink.path}`}
+        style={({ isActive }) => (isActive ? activeStyles : null)}
+      >
+          {sidelink.icon}
+          <span>{sidelink.text}</span>
+      </NavLink>
     );
   });
 
@@ -131,14 +141,14 @@ const StudentLayout = (props) => {
 
       <SideNav isShow={show}>
         <div className="logoBox ml-5">
-        <img className="w-full h-full rounded-full" src={""} alt="Profile-pic" />
+          <img
+            className="w-full h-full rounded-full"
+            src={""}
+            alt="Profile-pic"
+          />
         </div>
-        <h3 className="text-left text-white font-bold text-2xl">
-          Asum Victor
-        </h3>
-        <ul className="mt-10">
-          {sidelinks}
-        </ul>
+        <h3 className="text-left text-white font-bold text-2xl">Asum Victor</h3>
+        <ul className="mt-10">{sidelinks}</ul>
       </SideNav>
       <div className={`content p-0 w-full ${show ? "space-toggle2" : null}`}>
         {/* for dashboard page */}

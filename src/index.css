@@ -183,13 +183,17 @@ main {
 .sideNav-li {
   color: white;
   font-weight: 700;
-  font-size: 20px;
+  font-size: 17px;
   background-color: transparent;
   margin-top: 16px;
   display: flex;
   justify-content: start;
   align-items: center;
   padding: 5px 0px 5px 0px;
+  border-radius: 10px;
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
 }
 
 .sideNav-link {
@@ -257,6 +261,11 @@ main {
     transition: 0.3s;
     border: 1px solid white;
   }
+
+  .show .sideNav-li {
+    justify-content: flex-start;
+  }
+
 }
 
 @media screen and (min-width: 768px) {
@@ -292,6 +301,10 @@ main {
   .show .sideNav-link span,
   .show .sideNav-li span {
     display: block;
+  }
+
+  .show .sideNav-li {
+    justify-content: flex-start;
   }
 
   .logoBox {
