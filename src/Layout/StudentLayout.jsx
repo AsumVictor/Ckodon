@@ -143,7 +143,7 @@ const StudentLayout = (props) => {
         <div className="logoBox ml-5">
           <img
             className="w-full h-full rounded-full"
-            src={""}
+            src="/images/selorm.jpg"
             alt="Profile-pic"
           />
         </div>
