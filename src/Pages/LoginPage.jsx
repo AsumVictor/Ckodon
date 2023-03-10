@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "../css/loginpage.css";
 import { HiBadgeCheck } from "react-icons/hi";
 import { HiArrowRightOnRectangle } from "react-icons/hi2";
@@ -195,9 +196,9 @@ export default function LoginPage() {
           </button>
           <p className="mt-10 ">
             Need an Account :
-            <a href="#" className="text-MdBlue font-extrabold underline ml-1">
+            <Link to='/apply' className="text-MdBlue font-extrabold underline ml-1">
               Apply
-            </a>
+            </Link>
           </p>
         </form>
       </section>

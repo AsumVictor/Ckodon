@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import Header from "../Components/Header";
 import SideNav from "../Components/Sidenav";
 import "../index.css";
@@ -21,20 +22,23 @@ const WelcomePageLayout = (props) => {
 
   //Scroll Effect
   const [colorChange, setColorchange] = useState(false);
-  const changeNavbarColor = () =>{
-     if(window.scrollY >= 50){
-       setColorchange(true);
-     }
-     else{
-       setColorchange(false);
-     }
+  const changeNavbarColor = () => {
+    if (window.scrollY >= 50) {
+      setColorchange(true);
+    } else {
+      setColorchange(false);
+    }
   };
-  window.addEventListener('scroll', changeNavbarColor);
-
+  window.addEventListener("scroll", changeNavbarColor);
 
   return (
     <main>
-        <Header handleToggleNav={toggleNav} isShow={show} extraClass={`${colorChange? 'changeColor' : null}`}>
+      <Header
+        handleToggleNav={toggleNav}
+        isShow={show}
+        extraClass={`${colorChange ? "changeColor" : null}`}
+      >
+        <Link to="/login">
           <button
             className="navSignin space-x-2 rounded-md self-center
           border-2 flex flex-row items-center px-3 text-2xl font-bold"
@@ -42,7 +46,8 @@ const WelcomePageLayout = (props) => {
             <HiArrowRightOnRectangle />
             <span> Sign In </span>
           </button>
-        </Header>
+        </Link>
+      </Header>
       <SideNav isShow={show}>
         <div className="flex flex-col mt-10">
           <img src={Logo} alt="Logo" className={`${show ? null : "hide"}`} />
@@ -71,13 +76,15 @@ const WelcomePageLayout = (props) => {
           <hr />
         </div>
 
-        <button
-          className="sideNav-link space-x-2 signin rounded-md absolute bottom-2 
+        <Link to="/login">
+          <button
+            className="sideNav-link space-x-2 signin rounded-md absolute bottom-2 
                            self-center w-9/12 py-1"
-        >
-          <HiArrowRightOnRectangle />
-          <span> Sign In </span>
-        </button>
+          >
+            <HiArrowRightOnRectangle />
+            <span> Sign In </span>
+          </button>
+        </Link>
       </SideNav>
       <div className={`content p-0 w-full ${show ? "space-toggle2" : null}`}>
         {props.children}

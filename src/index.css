@@ -6,7 +6,7 @@
   --header-height: 4.5rem;
   --nav-width: 68px;
 
-  --first-color: #15a4fe;
+  --first-color: #2455fe;
 }
 
 * {
@@ -87,18 +87,28 @@ main {
 
 .nav {
   position: relative;
-  display: flex;
-  flex-direction: column;
-  justify-content: start;
-  overflow: hidden;
+  overflow-y: scroll;
   height: 100%;
+  padding-bottom: 1rem;
+}
+
+.nav::-webkit-scrollbar {
+  width: 0px;
+}
+
+.logoBox {
+  width: 200px;
+  height: 200px;
+  border-radius: 100%;
+  transition: 0.3s;
+  transform: translateX(-1rem);
 }
 
 .userInfo {
   box-shadow: 0px 0px 2.2px rgba(0, 0, 0, 0.028),
     0px 0px 7.4px rgba(0, 0, 0, 0.042), 0px 0px 33px rgba(0, 0, 0, 0.07);
   right: -10px;
-  transform:translateY(calc((var(--header-height)) + 0.3rem));
+  transform: translateY(calc((var(--header-height)) + 0.3rem));
   transition: 0.3s ease-in-out;
 }
 
@@ -170,7 +180,7 @@ main {
   stroke-dashoffset: -102px;
 }
 
-.sideNav-link {
+.sideNav-li {
   color: white;
   font-weight: 700;
   font-size: 20px;
@@ -182,7 +192,7 @@ main {
   padding: 5px 0px 5px 0px;
 }
 
-.sideNav-li {
+.sideNav-link {
   color: white;
   font-weight: 700;
   font-size: 16px;
@@ -235,10 +245,17 @@ main {
     padding-left: 0px;
   }
 
-  .sideNav-link,
-  .sideNav-li span {
+  .show .sideNav-link span,
+  .show .sideNav-li span {
     display: block;
     text-transform: capitalize;
+  }
+  .show .logoBox {
+    width: 160px;
+    height: 160px;
+    border-radius: 100%;
+    transition: 0.3s;
+    border: 1px solid white;
   }
 }
 
@@ -277,9 +294,36 @@ main {
     display: block;
   }
 
+  .logoBox {
+    width: 55px;
+    height: 55px;
+    border-radius: 100%;
+    transition: 0.3s;
+    border: 1px solid white;
+    transform: translateX(-2rem);
+  }
+
+  .show .logoBox {
+    width: 160px;
+    height: 160px;
+    transform: translateX(-1rem);
+  }
+
+  .sidebar h3 {
+    display: none;
+  }
+
+  .show h3 {
+    display: block;
+  }
+
   .hide {
     transform: scale(2.5);
     transition: 0.3s;
+  }
+
+  .sideNav-li {
+    font-size: 16px;
   }
 
   #hero {

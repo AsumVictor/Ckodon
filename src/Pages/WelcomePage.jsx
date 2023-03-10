@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import "../index.css";
 import Student1 from "../assets/student4.jpg";
 import Student2 from "../assets/top3.jpg";
@@ -9,17 +10,16 @@ import SampleData from "../Layout/SampleData";
 import WelcomePageLayout from "../Layout/WelcomePage.Layout";
 
 export default function WelcomePage() {
-
-let articles = SampleData.map((articleData)=>{
-    return(
-        <Article 
-        image = {articleData.image}
-        date = {articleData.date}
-        title = {articleData.title}
-        story = {articleData.story}
-        />
-    )
-})
+  let articles = SampleData.map((articleData) => {
+    return (
+      <Article
+        image={articleData.image}
+        date={articleData.date}
+        title={articleData.title}
+        story={articleData.story}
+      />
+    );
+  });
 
   return (
     <WelcomePageLayout>
@@ -31,33 +31,35 @@ let articles = SampleData.map((articleData)=>{
         <div className="heroImg-wrapper w-full flex flex-row absolute">
           <img
             src={Student3}
-            alt=""
+            alt="article image"
             style={{ height: "12cm" }}
             className="brightness-75"
           />
           <img
             src={Student2}
-            alt=""
+            alt="article image"
             style={{ height: "12cm" }}
             className="brightness-75"
           />
           <img
             src={Student1}
-            alt=""
+            alt="article image"
             style={{ height: "12cm" }}
             className="brightness-75"
           />
           <img
             src={Student3}
-            alt=""
+            alt="article image"
             style={{ height: "12cm" }}
             className="brightness-75"
           />
         </div>
         <div className="call-to-action absolute bottom-0 py-20 w-full flex justify-center">
-          <button className="font-bold  text-white text-center py-2 px-10 bg-MdBlue500 z-20">
-            Apply to Ckodon Now!
-          </button>
+          <Link to="/apply">
+            <button className="font-bold  text-white text-center py-2 px-10 bg-MdBlue500 z-20">
+              Apply to Ckodon Now!
+            </button>
+          </Link>
         </div>
       </section>
       <section className="info w-full flex flex-col md:flex-row px-10 pb-20 justify-between">
@@ -103,22 +105,37 @@ let articles = SampleData.map((articleData)=>{
               following criteria:
             </p>
             <ul className="list-disc">
-                <li>Be committed to achieving their academic and career goals.</li>
-                <li>Have a strong academic record, with a minimum GPA of NAN</li>
+              <li>
+                Be committed to achieving their academic and career goals.
+              </li>
+              <li>Have a strong academic record, with a minimum GPA of NAN</li>
             </ul>
           </section>
 
           <section className="mt-10">
             <h3 className="text-2xl font-bold">Donate</h3>
-            <p>Your donation can make a real difference in the lives of talented students from underserved communities. Your support can help us provide SAT preparation courses, college application support, and mentorship opportunities to students who might not otherwise have access to these resources. Please consider making a donation today and help us support the next generation of leaders.</p>
+            <p>
+              Your donation can make a real difference in the lives of talented
+              students from underserved communities. Your support can help us
+              provide SAT preparation courses, college application support, and
+              mentorship opportunities to students who might not otherwise have
+              access to these resources. Please consider making a donation today
+              and help us support the next generation of leaders.
+            </p>
           </section>
           <section className="mt-10">
             <h3 className="text-2xl font-bold">Contact information</h3>
-            <p>We would love to hear from you! If you have any questions or concerns, please don't hesitate to contact us. You can reach us by phone at [insert phone number], by email at [{`email address`}], or by mail at [{`mail address`}]. Thank you for your interest in CKODON!</p>
+            <p>
+              We would love to hear from you! If you have any questions or
+              concerns, please don't hesitate to contact us. You can reach us by
+              phone at [insert phone number], by email at [{`email address`}],
+              or by mail at [{`mail address`}]. Thank you for your interest in
+              CKODON!
+            </p>
           </section>
         </aside>
         <aside className="w-full md:w-6/12 flex flex-auto flex-wrap justify-around">
-        {articles}
+          {articles}
         </aside>
       </section>
     </WelcomePageLayout>
