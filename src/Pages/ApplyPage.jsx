@@ -37,7 +37,7 @@ export default function LoginPage() {
   return (
     <main className="flex flex-row px-0 flex-wrap">
       <section
-        className="hidden md:w-5/12 md:flex md:flex-col justify-center bg-MdBlue500 py-10 fixed"
+        className="hidden md:w-5/12 md:flex md:flex-col justify-center bg-MdBlue py-10 fixed"
         style={{ height: "100vh" }}
       >
         <h1 className="text-4xl p-10 font-bold text-white">
@@ -46,7 +46,7 @@ export default function LoginPage() {
         <img src={Banner} alt="Logo" />
       </section>
       <section
-        className="hidden md:w-4/12 md:flex  "
+        className="hidden md:w-4/12 md:flex "
         style={{ height: "100vh" }}
       ></section>
       <section className="w-full flex flex-col items-center md:w-8/12 py-10">
@@ -364,7 +364,7 @@ export default function LoginPage() {
           <button
             id="submit"
             disabled={isDisabled ? true : false}
-            className="w-full bg-MdBlue500 text-2xl flex justify-center items-center font-bold py-3 text-white relative rounded-md mt-10 hover:bg-MdBlue"
+            className="w-full bg-MdBlue text-2xl flex justify-center items-center font-bold py-3 text-white relative rounded-md mt-10 hover:bg-MdBlue500"
           >
             Submit Application
             <div

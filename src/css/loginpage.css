@@ -45,6 +45,7 @@
 
 .radio input:disabled ~ .label{
     border: 3px solid rgba(182, 182, 250, 0.39);
+    cursor: not-allowed;
 }
 
 
@@ -54,6 +55,7 @@ display: block;
 
 .radio input:disabled ~ .label .checked{
     color: rgb(156, 174, 201);
+    cursor: not-allowed;
 }
 
 form .required{
@@ -77,6 +79,7 @@ form .required{
 
 .form-group.disabled{
     border: 3px solid rgba(182, 182, 250, 0.39);
+    cursor: not-allowed;
 }
 
 
@@ -88,6 +91,10 @@ form .required{
     left: 0px;
     background-color: transparent;
     outline: none;
+}
+
+.form-group input:disabled {
+    cursor: not-allowed;
 }
 
 .form-group label{
@@ -119,6 +126,7 @@ form .required{
 
 #submit:disabled{
 background-color: #d9e0f7 ;
+cursor: not-allowed;
 }
 
 
@@ -201,4 +209,8 @@ background-color: #d9e0f7 ;
     to {
        transform: rotate(360deg);
     }
+ }
+
+ .apply{
+    overflow-y: hidden;
  }

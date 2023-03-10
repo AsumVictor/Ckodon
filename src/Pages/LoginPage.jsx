@@ -196,7 +196,8 @@ export default function LoginPage() {
           </button>
           <p className="mt-10 ">
             Need an Account :
-            <Link to='/apply' className="text-MdBlue font-extrabold underline ml-1">
+            <Link to='/apply' className={`${isDisabled? 'text-gray-400 cursor-not-allowed': 'text-MdBlue '} font-extrabold underline ml-1`}
+              onClick={(e)=> isDisabled ? e.preventDefault(): null}>
               Apply
             </Link>
           </p>
