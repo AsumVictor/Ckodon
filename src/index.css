@@ -133,7 +133,7 @@ main {
 
 .show {
   left: 0;
-  width: calc(var(--header-height) + 220px);
+  width: calc(var(--header-height) + 170px);
 }
 
 .content {
@@ -245,8 +245,8 @@ main {
 @media screen and (max-width: 768px) {
   .header.space-toggle,
   .navbar.space-toggle {
-    transform: translateX(calc(var(--header-height) + 220px));
-    padding-left: 0px;
+    transform: translateX(calc(var(--header-height) + 160px));
+    padding: 0px;
   }
 
   .show .sideNav-link span,

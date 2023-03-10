@@ -1,6 +1,6 @@
 import React from 'react';
 
-export default function Activity(){
+export default function ActivityList(){
     return(
         <h1>Activity page</h1>
     )

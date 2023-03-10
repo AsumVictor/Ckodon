@@ -202,6 +202,11 @@ export default function LoginPage() {
             </Link>
           </p>
         </form>
+
+        <Link to='/dashboard'
+        className="mt-10 text-red-400  font-bold underline">
+         Click this Temporary Link to dashboard
+        </Link>
       </section>
     </main>
   );

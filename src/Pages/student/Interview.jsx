@@ -1,7 +1,7 @@
 import React from 'react';
 
-export default function Notification(){
+export default function Interview(){
     return(
-        <h1>Notification page</h1>
+        <h1>Interview page</h1>
     )
 }

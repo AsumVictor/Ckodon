@@ -150,8 +150,9 @@ const StudentLayout = (props) => {
         <h3 className="text-left text-white font-bold text-2xl">Asum Victor</h3>
         <ul className="mt-10">{sidelinks}</ul>
       </SideNav>
-      <div className={`content p-0 w-full ${show ? "space-toggle2" : null}`}>
-        {/* for dashboard page */}
+      <div className={`content relative p-0 w-full ${show ? "space-toggle2" : null}`}>
+        {/* for pages */}
+        <Outlet />
       </div>
     </main>
   );
