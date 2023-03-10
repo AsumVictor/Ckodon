@@ -64,7 +64,7 @@ export default function LoginPage() {
         </p>
 
         <form onSubmit={handleSubmit} className="mt-10 flex flex-col">
-          <div className="w-full border-2 px-1 rounded-md flex flex-col pb-3">
+          <div className="w-full  px-1 rounded-md flex flex-col pb-3">
             <h4 className="-mt-3 ">
               <span className="bg-white px-2">I'm signing in as</span>
               <span className="required bg-white pr-2">*</span>
