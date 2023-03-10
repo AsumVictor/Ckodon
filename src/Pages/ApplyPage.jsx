@@ -381,7 +381,7 @@ export default function LoginPage() {
         <div className="submittedAlert px-10">
           <Lottie
             animationData={SubmitCheack}
-            loop={true}
+            loop={false}
             style={{ width: 200 }}
             autoplay={true}
           />

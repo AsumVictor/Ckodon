@@ -32,7 +32,7 @@ function App() {
              <Route index element={<ActivityOverview/>} />
              <Route path="Tips" element={<ActivityTips />} />
              <Route path="Honor-and-Activity" element={<ActivityPage />} />
-          </Route>
+          </Route>    
           <Route path="essays" element={<Construction />} />
           <Route path="aid" element={<Construction />} />
           <Route path="Interview" element={<Construction />} />

@@ -10,13 +10,13 @@ export default function ActivityLayout() {
 
   return (
     <>
-      <div className="flex flex-row w-full justify-center items-center bg-blue-100 py-1">
+      <div className="flex flex-row w-full justify-center items-center py-1">
         <h3 className="font-bold text-15 md:text-2xl text-center text-MdBlue underline capitalize">
           Common app honors and activity list
         </h3>
       </div>
       <div
-        className="flex flex-row w-full shadow-md py-2 sticky top-0 justify-center space-x-5 px-5  
+        className="flex flex-row w-full shadow-md py-2 sticky top-20 justify-center space-x-5 px-5  
                        items-center mt-8 bg-blue-100"
       >
         <NavLink
