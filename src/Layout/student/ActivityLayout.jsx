@@ -17,7 +17,7 @@ export default function ActivityLayout() {
       </div>
       <div
         className="flex flex-row w-full shadow-md py-2 sticky top-20 justify-center space-x-5 px-5  
-                       items-center mt-8 bg-blue-100"
+                       items-center mt-8 bg-blue-100 z-10"
       >
         <NavLink
           to="."
