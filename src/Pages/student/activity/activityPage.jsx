@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import HonorInput from "../../../Components/student/honorInput";
+import ActivityInput from "../../../Components/student/activity";
 import Lottie from "lottie-react";
 import NoContent from "../../../animations/no file.json";
 import { HiOutlinePlus } from "react-icons/hi2";
@@ -54,7 +55,7 @@ export default function ActivityList() {
         id: nanoid(),
         order: honorNumber,
         type: "",
-        oosition: " ",
+        position: " ",
         organisationName: "",
         description: "",
         GradeLevel9: false,
@@ -72,6 +73,7 @@ export default function ActivityList() {
     ]);
   }
 
+  //Valuable to display activity and honor honor content
   const honorContent = honorformData.map((content) => {
     return (
       <HonorInput
@@ -79,6 +81,17 @@ export default function ActivityList() {
         id={content.honorId}
         handleChange={handleChange}
         honorNumber={content.honorOrder}
+      />
+    );
+  });
+
+
+  const ActivityContent = actFormData.map((content) => {
+    return (
+      <ActivityInput
+        key={content.id}
+        id={content.id}
+        order={content.order}
       />
     );
   });
@@ -154,7 +167,7 @@ export default function ActivityList() {
                 </button>
               </aside>
               {/* Activity inputs goes here */}
-              {`Nothing`}
+              {ActivityContent}
               <div
             className="cursor-pointer flex flex-row items-center mt-3 font-semibold text-MdBlue text-18 md:text-20"
             onClick={createNewActivity}
@@ -165,7 +178,7 @@ export default function ActivityList() {
           )}
           
           {/* Submit and add new honor block */}
-          {honorformData >= 10 && actFormData >= 0 && (
+          {honorformData.length >= 10 && actFormData.length >= 0 && (
             <button className="capitalize px-5 py-2 bg-MdBlue rounded-md text-white font-bold mt-20">
               Submit for review
             </button>
