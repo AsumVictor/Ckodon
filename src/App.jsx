@@ -7,7 +7,6 @@ import ErrorPage from "./Pages/ErrorPage";
 import LoginPage from "./Pages/LoginPage";
 import Dashboard from "./Pages/student/dashboard";
 import ActivityPage from "./Pages/student/activity/activityPage";
-import EssayPage from "./Pages/student/essaysPage";
 import FinancialAidPage from "./Pages/student/FinancialAidPage";
 import Interview from "./Pages/student/Interview";
 import Recommendation from "./Pages/student/Recommendation";
@@ -21,6 +20,7 @@ import EssaysLayout from "./Layout/student/essayLayout";
 import RecomendationLayout from "./Layout/student/recommendation";
 import FinancialAIdLayout from "./Layout/student/Aid";
 import InterviewLayout from "./Layout/student/Interview";
+import IntroductionPage from "./Pages/student/essays/introductionPage";
 
 function App() {
   return (
@@ -41,7 +41,7 @@ function App() {
 
           <Route path="Essays" element={<EssaysLayout />}>
              <Route index element={<Construction/>} />
-             <Route path="Edit-Essays" element={<Construction />} />
+             <Route path="Edit-Essays" element={<IntroductionPage />} />
           </Route>   
 
           <Route path="financial-aid" element={<FinancialAIdLayout />}>
