@@ -61,7 +61,7 @@ const StudentLayout = (props) => {
     {
       text: "Aid",
       icon: <HiCurrencyDollar />,
-      path: "/Aid",
+      path: "/financial-aid",
     },
     {
       text: "interview",

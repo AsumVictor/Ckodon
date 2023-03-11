@@ -17,6 +17,10 @@ import Construction from "./Pages/Construction";
 import ActivityTips from './Pages/student/activity/ActivityTips'
 import ActivityList from "./Pages/student/activity/activityPage";
 import ActivityOverview from "./Pages/student/activity/ActivityOverview";
+import EssaysLayout from "./Layout/student/essayLayout";
+import RecomendationLayout from "./Layout/student/recommendation";
+import FinancialAIdLayout from "./Layout/student/Aid";
+import InterviewLayout from "./Layout/student/Interview";
 
 function App() {
   return (
@@ -28,16 +32,38 @@ function App() {
         <Route path="*" element={<ErrorPage />} />
         <Route element={<StudentLayout />}>
           <Route path="/dashboard" element={<Construction />} />
+
           <Route path="activities" element={<ActivityLayout />}>
              <Route index element={<ActivityOverview/>} />
              <Route path="Tips" element={<ActivityTips />} />
-             <Route path="Honor-and-Activity" element={<ActivityPage />} />
-          </Route>    
-          <Route path="essays" element={<Construction />} />
-          <Route path="aid" element={<Construction />} />
-          <Route path="Interview" element={<Construction />} />
-          <Route path="Recommendation" element={<Construction />} />
+             <Route path="Honor-and-Activity" element={<ActivityList />} />
+          </Route>
+
+          <Route path="Essays" element={<EssaysLayout />}>
+             <Route index element={<Construction/>} />
+             <Route path="Edit-Essays" element={<Construction />} />
+          </Route>   
+
+          <Route path="financial-aid" element={<FinancialAIdLayout />}>
+             <Route index element={<Construction/>} />
+             <Route path="edit-financial-documents" element={<Construction />} />
+          </Route>
+
+          <Route path="recommendation" element={<RecomendationLayout />}>
+             <Route index element={<Construction/>} />
+             <Route path="invite" element={<Construction />} />
+          </Route>  
+
+          <Route path="interview" element={<InterviewLayout />}>
+             <Route index element={<Construction/>} />
+          </Route> 
+
           <Route path="Reviews" element={<Construction />} />
+
+          <Route path="notification" element={<ErrorPage />} />
+
+          <Route path="chat" element={<ErrorPage />} />
+
         </Route>
       </Routes>
     </BrowserRouter>
