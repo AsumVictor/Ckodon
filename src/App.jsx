@@ -21,6 +21,7 @@ import RecomendationLayout from "./Layout/student/recommendation";
 import FinancialAIdLayout from "./Layout/student/Aid";
 import InterviewLayout from "./Layout/student/Interview";
 import IntroductionPage from "./Pages/student/essays/introductionPage";
+import EssayForm from "./Pages/student/essays/EditEssays";
 
 function App() {
   return (
