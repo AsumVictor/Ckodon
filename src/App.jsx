@@ -21,7 +21,7 @@ import RecomendationLayout from "./Layout/student/recommendation";
 import FinancialAIdLayout from "./Layout/student/Aid";
 import InterviewLayout from "./Layout/student/Interview";
 import IntroductionPage from "./Pages/student/essays/introductionPage";
-import EssayForm from "./Pages/student/essays/EditEssays";
+import ActivityPage2 from './Pages/student/activity/ActivityPage2'
 
 function App() {
   return (
@@ -37,7 +37,7 @@ function App() {
           <Route path="activities" element={<ActivityLayout />}>
              <Route index element={<ActivityOverview/>} />
              <Route path="Tips" element={<ActivityTips />} />
-             <Route path="Honor-and-Activity" element={<ActivityList />} />
+             <Route path="Honor-and-Activity" element={<ActivityPage2 />} />
           </Route>
 
           <Route path="Essays" element={<EssaysLayout />}>

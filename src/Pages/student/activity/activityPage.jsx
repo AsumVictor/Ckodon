@@ -85,14 +85,9 @@ export default function ActivityList() {
     );
   });
 
-
   const ActivityContent = actFormData.map((content) => {
     return (
-      <ActivityInput
-        key={content.id}
-        id={content.id}
-        order={content.order}
-      />
+      <ActivityInput key={content.id} id={content.id} order={content.order} />
     );
   });
 
@@ -144,16 +139,16 @@ export default function ActivityList() {
               {/* Honors inputs goes here */}
               {honorContent}
               <div
-            className="cursor-pointer flex flex-row items-center mt-3 font-semibold text-MdBlue text-18 md:text-20"
-            onClick={createNewHonor}
-          >
-            <HiOutlinePlus /> <span>Add new block</span>
-          </div>
+                className="cursor-pointer flex flex-row items-center mt-3 font-semibold text-MdBlue text-18 md:text-20"
+                onClick={createNewHonor}
+              >
+                <HiOutlinePlus /> <span>Add new block</span>
+              </div>
             </div>
           )}
 
-            {/* Activity input */}
-            {actFormData.length >= 1 && (
+          {/* Activity input */}
+          {actFormData.length >= 1 && (
             <div
               className="Activity--wrapper w-full flex flex-col justify-start items-center
               md:w-7/12 border-l-2 border-r-2 border-MdBlue rounded-lg mt-20"
@@ -169,14 +164,14 @@ export default function ActivityList() {
               {/* Activity inputs goes here */}
               {ActivityContent}
               <div
-            className="cursor-pointer flex flex-row items-center mt-3 font-semibold text-MdBlue text-18 md:text-20"
-            onClick={createNewActivity}
-          >
-            <HiOutlinePlus /> <span>Add new block</span>
-          </div>
+                className="cursor-pointer flex flex-row items-center mt-3 font-semibold text-MdBlue text-18 md:text-20"
+                onClick={createNewActivity}
+              >
+                <HiOutlinePlus /> <span>Add new block</span>
+              </div>
             </div>
           )}
-          
+
           {/* Submit and add new honor block */}
           {honorformData.length >= 10 && actFormData.length >= 0 && (
             <button className="capitalize px-5 py-2 bg-MdBlue rounded-md text-white font-bold mt-20">
