@@ -1,12 +1,20 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import Lottie from "lottie-react";
 import NoContent from "../../../animations/no file.json";
 import { HiOutlinePlus } from "react-icons/hi2";
 import { HiTrash } from "react-icons/hi";
+import { nanoid } from "nanoid";
 
-function HonorForm() {
-  const [Honor, setHonor] = useState([]); //Honors List
-  const [Activity, setActivity] = useState([]); //activity list
+function AcitivityPage() {
+
+
+  const [activityAndHonors, setactivityAndHonrs] = useState(() => JSON.parse(localStorage.getItem("activityAndHonors")) || {
+    id: nanoid(),
+    Honors: null,
+    Activities: null,
+  })
+  const [Honor, setHonor] = useState( activityAndHonors.Honors || []); //Honors List
+  const [Activity, setActivity] = useState( activityAndHonors.Activities || []); //activity list
 
   //Add new honor
   const addHonor = () => {
@@ -27,7 +35,6 @@ function HonorForm() {
   };
 
   //Add new activity
-
   function addActivity() {
     const newActivity = {
       id: Activity.length + 1,
@@ -65,7 +72,6 @@ function HonorForm() {
   };
 
   //Handle Activity form
-
   function HanldeActivityChange(event, index) {
     const { name, value, type, checked } = event.target;
     setActivity((prevState) => {
@@ -78,11 +84,25 @@ function HonorForm() {
     });
   }
 
+  //Handle Submit
   const handleSubmit = (event) => {
     event.preventDefault();
-    console.log(Honor);
-    // Code to submit the form data goes here
+   console.log(activityAndHonors);
   };
+
+    //When honor and activity array changes, push to local storage
+    useEffect(() => {
+        setactivityAndHonrs(prevState=>{
+            return{
+                ...prevState,
+                Honors: Honor,
+                Activities: Activity,
+            }
+        })
+        localStorage.setItem("activityAndHonors", JSON.stringify(activityAndHonors));
+        console.log('rendered');
+      }, [Honor, Activity]);
+    
 
   return (
     <section className="flex items-center flex-col justify-center pb-20">
@@ -121,7 +141,7 @@ function HonorForm() {
               <aside className="flex flex-row relative justify-between w-full py-3 bg-MdBlue items-center pl-3 pr-10 md:px-10">
                 <h3 className="text-white font-bold text-20">Honors</h3>
                 <h3 className="text-white font-bold text-15">Status</h3>
-                <button className="collasped-toggler right-5 absolute">
+                <button className="collasped-toggler right-5 absolute" type="button">
                   ^
                 </button>
               </aside>
@@ -316,7 +336,7 @@ function HonorForm() {
               <aside className="flex flex-row relative justify-between w-full py-3 bg-MdBlue items-center pl-3 pr-10 md:px-10">
                 <h3 className="text-white font-bold text-20">Activity</h3>
                 <h3 className="text-white font-bold text-15">Status</h3>
-                <button className="collasped-toggler right-5 absolute">
+                <button className="collasped-toggler right-5 absolute" type="button">
                   ^
                 </button>
               </aside>
@@ -594,8 +614,9 @@ function HonorForm() {
           )}
 
           {/* Submit when Honor is 5 or more and Activity is 10 or more */}
-          {Honor.length >= 5 && (
-            <button className="capitalize px-5 py-2 bg-MdBlue rounded-md text-white font-bold mt-20">
+          {(Honor.length >= 5 && Activity.length >= 10 ) && (
+            <button className="capitalize px-5 py-2 bg-MdBlue rounded-md text-white font-bold mt-20" type="submit"
+            onClick={handleSubmit}>
               Submit for review
             </button>
           )}
@@ -632,4 +653,4 @@ function HonorForm() {
   );
 }
 
-export default HonorForm;
+export default AcitivityPage;

@@ -6,7 +6,6 @@ import ApplyPage from "./Pages/ApplyPage";
 import ErrorPage from "./Pages/ErrorPage";
 import LoginPage from "./Pages/LoginPage";
 import Dashboard from "./Pages/student/dashboard";
-import ActivityPage from "./Pages/student/activity/activityPage";
 import FinancialAidPage from "./Pages/student/FinancialAidPage";
 import Interview from "./Pages/student/Interview";
 import Recommendation from "./Pages/student/Recommendation";
@@ -14,14 +13,14 @@ import Review from "./Pages/student/Review";
 import ActivityLayout from "./Layout/student/ActivityLayout";
 import Construction from "./Pages/Construction";
 import ActivityTips from './Pages/student/activity/ActivityTips'
-import ActivityList from "./Pages/student/activity/activityPage";
 import ActivityOverview from "./Pages/student/activity/ActivityOverview";
+import ActivityPage from './Pages/student/activity/ActivityPage'
 import EssaysLayout from "./Layout/student/essayLayout";
 import RecomendationLayout from "./Layout/student/recommendation";
 import FinancialAIdLayout from "./Layout/student/Aid";
 import InterviewLayout from "./Layout/student/Interview";
-import IntroductionPage from "./Pages/student/essays/introductionPage";
-import ActivityPage2 from './Pages/student/activity/ActivityPage2'
+import EditEssayPage from "./Pages/student/essays/EditEssayPage";
+import EssayIntroductionPage from './Pages/student/essays/Introduction'
 
 function App() {
   return (
@@ -37,12 +36,12 @@ function App() {
           <Route path="activities" element={<ActivityLayout />}>
              <Route index element={<ActivityOverview/>} />
              <Route path="Tips" element={<ActivityTips />} />
-             <Route path="Honor-and-Activity" element={<ActivityPage2 />} />
+             <Route path="Honor-and-Activity" element={<ActivityPage />} />
           </Route>
 
           <Route path="Essays" element={<EssaysLayout />}>
-             <Route index element={<Construction/>} />
-             <Route path="Edit-Essays" element={<IntroductionPage />} />
+             <Route index element={<EssayIntroductionPage/>} />
+             <Route path="Edit-Essays" element={<EditEssayPage />} />
           </Route>   
 
           <Route path="financial-aid" element={<FinancialAIdLayout />}>
