@@ -98,7 +98,7 @@ const StudentLayout = (props) => {
         style={({ isActive }) => (isActive ? activeStyles : null)}
       >
           {sidelink.icon}
-          <span>{sidelink.text}</span>
+          <span className="ml-2">{sidelink.text}</span>
       </NavLink>
     );
   });

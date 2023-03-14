@@ -31,7 +31,7 @@ function App() {
         <Route path="/apply" element={<ApplyPage />} />
         <Route path="*" element={<ErrorPage />} />
         <Route element={<StudentLayout />}>
-          <Route path="/dashboard" element={<Construction />} />
+          <Route path="/dashboard" element={<Dashboard />} />
 
           <Route path="activities" element={<ActivityLayout />}>
              <Route index element={<ActivityOverview/>} />
