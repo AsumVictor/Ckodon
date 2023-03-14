@@ -1,13 +1,17 @@
 import React, { useState } from "react";
 import Navbar from "../Components/Navbar";
 import SideNav from "../Components/Sidenav";
+import { NavLink, Link, Outlet } from "react-router-dom";
+import NoticationIcon from "../Components/notificationIcon";
 import {
+  HiCurrencyDollar,
   HiHome,
   HiBookOpen,
+  HiBell,
   HiUserGroup,
+  HiUsers,
+  HiInbox,
   HiArrowLeftOnRectangle,
-  HiMegaphone,
-  HiUserPlus
 } from "react-icons/hi2";
 import {
   HiPencilAlt,
@@ -20,54 +24,89 @@ import "../index.css";
 const AdminLayout = (props) => {
   //Navigation
   const [show, setShow] = useState(false);
-  const [dropDownProfile, setDropDownProfile] = useState(false) 
+  const [dropDownProfile, setDropDownProfile] = useState(false);
   function toggledropDownProfile() {
     setDropDownProfile((prev) => !prev);
   }
-
 
   function toggleNav() {
     setShow((prevShow) => !prevShow);
   }
 
-  const li = {
-    dashboard: {
+  function toggledropDownProfile() {
+    setDropDownProfile((prev) => !prev);
+  }
+
+  const links = [
+    {
       text: "Dashboard",
-      id: 1,
+      icon: <HiHome />,
+      path: "/dashboard",
     },
-    students: {
-      text: "Students",
-      id: 2,
+    {
+      text: "Activities",
+      icon: <HiClipboardList />,
+      path: "/activities",
     },
-    reviews: {
-      text: "reviews tasks",
-      id: 3,
+    {
+      text: "Essays",
+      icon: <HiPencilAlt />,
+      path: "/essays",
     },
-    broadcast: {
-      text: "broadcast",
-      id: 4,
+    {
+      text: "Recommendation",
+      icon: <HiInbox />,
+      path: "/recommendation",
     },
-    Sat: {
-      text: "Sat Students",
-      id: 5,
+    {
+      text: "Aid",
+      icon: <HiCurrencyDollar />,
+      path: "/financial-aid",
     },
-    community: {
-      text: "community",
-      id: 6,
+    {
+      text: "interview",
+      icon: <HiUsers />,
+      path: "/interview",
     },
-    applicants: {
-      text: "new applicants",
-      id: 7,
+    {
+      text: "notification",
+      icon: <HiBell />,
+      path: "/notification",
     },
-    chat: {
+    {
+      text: "reviews",
+      icon: <HiClipboardList />,
+      path: "/reviews",
+    },
+    {
       text: "chat",
-      id: 8,
+      icon: <HiChatAlt2 />,
+      path: "/chat",
     },
+  ];
+
+  const activeStyles = {
+    backgroundColor: 'white',
+    color: "#2455fe",
   };
+
+  const sidelinks = links.map((sidelink) => {
+    return (
+      <NavLink
+        className="sideNav-li"
+        to={`${sidelink.path}`}
+        style={({ isActive }) => (isActive ? activeStyles : null)}
+      >
+          {sidelink.icon}
+          <span className="ml-2">{sidelink.text}</span>
+      </NavLink>
+    );
+  });
 
   return (
     <main>
       <Navbar isShow={show} handleToggleNav={toggleNav}>
+        <p className="font-bold text-2xl text-MdBlue">CKODON</p>
         <div className="profile relative flex flex-row items-center space-x-5">
           <div
             className="profilePic bg-blue-800 rounded-full cursor-pointer p-1"
@@ -101,80 +140,19 @@ const AdminLayout = (props) => {
       </Navbar>
 
       <SideNav isShow={show}>
-        <ul>
-          <li
-            className={`sideNav-li space-x-2 ${
-              props.active == li.dashboard.id ? "active" : null
-            }`}
-          >
-            <HiHome />
-            <span> {li.dashboard.text} </span>
-          </li>
-          <li
-            className={`sideNav-li space-x-2 ${
-              props.active == li.students.id ? "active" : null
-            } `}
-          >
-            <HiClipboardList />
-            <span> {li.students.text} </span>
-          </li>
-          <li
-            className={`sideNav-li space-x-2 ${
-              props.active == li.reviews.id ? "active" : null
-            }`}
-          >
-            <HiPencilAlt />
-            <span> {li.reviews.text} </span>
-          </li>
-
-          <li
-            className={`sideNav-li space-x-2 ${
-              props.active == li.Sat.id ? "active" : null
-            }`}
-          >
-            <HiBookOpen />
-            <span> {li.Sat.text} </span>
-          </li>
-
-          <hr />
-          <li
-            className={`sideNav-li space-x-2 ${
-              props.active == li.applicants.id ? "active" : null
-            }`}
-          >
-            <HiUserPlus />
-            <span> {li.applicants.text} </span>
-          </li>
-
-          <hr />
-          <li
-            className={`sideNav-li space-x-2 ${
-              props.active == li.broadcast.id ? "active" : null
-            }`}
-          >
-            <HiMegaphone />
-            <span> {li.broadcast.text} </span>
-          </li>
-          <li
-            className={`sideNav-li space-x-2 ${
-              props.active == li.community.id ? "active" : null
-            }`}
-          >
-            <HiUserGroup />
-            <span> {li.community.text} </span>
-          </li>
-          <li
-            className={`sideNav-li space-x-2 ${
-              props.active == li.chat.id ? "active" : null
-            }`}
-          >
-            <HiChatAlt2 />
-            <span> {li.chat.text} </span>
-          </li>
-        </ul>
+        <div className="logoBox ml-5">
+          <img
+            className="w-full h-full rounded-full"
+            src="/images/selorm.jpg"
+            alt="Profile-pic"
+          />
+        </div>
+        <h3 className="text-left text-white font-bold text-2xl">Asum Victor</h3>
+        <ul className="mt-10">{sidelinks}</ul>
       </SideNav>
-      <div className={`content p-0 w-full ${show ? "space-toggle2" : null}`}>
-        {props.children}
+      <div className={`content relative p-0 w-full ${show ? "space-toggle2" : null}`}>
+        {/* for pages */}
+        <Outlet />
       </div>
     </main>
   );

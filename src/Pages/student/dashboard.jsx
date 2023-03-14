@@ -2,7 +2,7 @@ import React from "react";
 
 export default function dashboard() {
   return (
-    <section className="w-full pt-10 flex flex-col items-center">
+    <section className="w-full px-2 pt-10 flex flex-col items-center">
       <div className="w-full md:w-10/12 py-4 px-2 shadow-lg bg-white border-t-2 border-gray-100 rounded-xl flex flex-col items-center">
         <h1 className="text-18 md:text-2xl text-black font-bold text-center capitalize">
           Hey you are welcome back
