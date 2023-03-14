@@ -58,7 +58,7 @@ function App() {
              <Route index element={<Construction/>} />
           </Route> 
 
-          <Route path="Reviews" element={<Construction />} />
+          <Route path="Reviews" element={<Review />} />
 
           <Route path="notification" element={<ErrorPage />} />
 

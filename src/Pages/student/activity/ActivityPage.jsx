@@ -13,6 +13,8 @@ function AcitivityPage() {
     Honors: null,
     Activities: null,
   })
+
+
   const [Honor, setHonor] = useState( activityAndHonors.Honors || []); //Honors List
   const [Activity, setActivity] = useState( activityAndHonors.Activities || []); //activity list
 
@@ -55,7 +57,6 @@ function AcitivityPage() {
       weekPerYear: null,
     };
     setActivity((prevActivity) => [...prevActivity, newActivity]);
-    console.log(Activity);
   }
 
   //Handle Honor Data value
@@ -90,19 +91,18 @@ function AcitivityPage() {
    console.log(activityAndHonors);
   };
 
-    //When honor and activity array changes, push to local storage
-    useEffect(() => {
-        setactivityAndHonrs(prevState=>{
-            return{
-                ...prevState,
-                Honors: Honor,
-                Activities: Activity,
-            }
-        })
-        localStorage.setItem("activityAndHonors", JSON.stringify(activityAndHonors));
-        console.log('rendered');
-      }, [Honor, Activity]);
-    
+  const handleSave = () => {
+   console.log(activityAndHonors);
+   setactivityAndHonrs(prevState=>{
+    return{
+        ...prevState,
+        Honors: Honor,
+        Activities: Activity,
+    }
+})
+   localStorage.setItem("activityAndHonors", JSON.stringify(activityAndHonors));
+  };
+
 
   return (
     <section className="flex items-center flex-col justify-center pb-20">
@@ -612,6 +612,8 @@ function AcitivityPage() {
               </div>
             </div>
           )}
+
+<button type="button" onClick={handleSave}>Save Changes</button>
 
           {/* Submit when Honor is 5 or more and Activity is 10 or more */}
           {(Honor.length >= 5 && Activity.length >= 10 ) && (
