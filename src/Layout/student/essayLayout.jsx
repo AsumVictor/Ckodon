@@ -22,7 +22,7 @@ export default function EssaysLayout() {
         <NavLink
           to="."
           end
-          relative=""
+          relative
           className="text-15 capitalize md:text-18 font-bold px-4 text-MdBlue border-2 border-blue-600 rounded-md"
           style={({isActive})=> isActive? activeLink : null}
         >

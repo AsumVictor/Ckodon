@@ -207,6 +207,10 @@ export default function LoginPage() {
         className="mt-10 text-red-400  font-bold underline">
          Click this Temporary Link to dashboard
         </Link>
+        <Link to='/admin'
+        className="mt-10 text-red-400  font-bold underline">
+         Click this Temporary Link to Admin Dashboard
+        </Link>
       </section>
     </main>
   );

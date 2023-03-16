@@ -4,17 +4,13 @@ import SideNav from "../Components/Sidenav";
 import { NavLink, Link, Outlet } from "react-router-dom";
 import NoticationIcon from "../Components/notificationIcon";
 import {
-  HiCurrencyDollar,
   HiHome,
   HiBookOpen,
-  HiBell,
   HiUserGroup,
   HiUsers,
-  HiInbox,
   HiArrowLeftOnRectangle,
 } from "react-icons/hi2";
 import {
-  HiPencilAlt,
   HiChatAlt2,
   HiClipboardList,
   HiOutlineCog,
@@ -41,48 +37,39 @@ const AdminLayout = (props) => {
     {
       text: "Dashboard",
       icon: <HiHome />,
-      path: "/dashboard",
+      path: ".",
     },
     {
-      text: "Activities",
+      text: "Students",
       icon: <HiClipboardList />,
-      path: "/activities",
+      path: "Students",
     },
     {
-      text: "Essays",
-      icon: <HiPencilAlt />,
-      path: "/essays",
+      text: "New applicants",
+      icon: < HiUserGroup />,
+      path: "New-applicants",
     },
     {
-      text: "Recommendation",
-      icon: <HiInbox />,
-      path: "/recommendation",
+      text: "sat students",
+      icon: <HiBookOpen />,
+      path: "sat-students",
     },
     {
-      text: "Aid",
-      icon: <HiCurrencyDollar />,
-      path: "/financial-aid",
+      text: "task reviews",
+      icon: <HiClipboardList />,
+      path: "reviews",
     },
     {
-      text: "interview",
+      text: "broadcast",
       icon: <HiUsers />,
-      path: "/interview",
-    },
-    {
-      text: "notification",
-      icon: <HiBell />,
-      path: "/notification",
-    },
-    {
-      text: "reviews",
-      icon: <HiClipboardList />,
-      path: "/reviews",
+      path: "broadcast",
     },
     {
       text: "chat",
       icon: <HiChatAlt2 />,
-      path: "/chat",
+      path: "chat",
     },
+ 
   ];
 
   const activeStyles = {
@@ -96,6 +83,7 @@ const AdminLayout = (props) => {
         className="sideNav-li"
         to={`${sidelink.path}`}
         style={({ isActive }) => (isActive ? activeStyles : null)}
+        end
       >
           {sidelink.icon}
           <span className="ml-2">{sidelink.text}</span>
@@ -106,7 +94,7 @@ const AdminLayout = (props) => {
   return (
     <main>
       <Navbar isShow={show} handleToggleNav={toggleNav}>
-        <p className="font-bold text-2xl text-MdBlue">CKODON</p>
+        <p className="font-bold text-2xl text-MdBlue">ADMIN</p>
         <div className="profile relative flex flex-row items-center space-x-5">
           <div
             className="profilePic bg-blue-800 rounded-full cursor-pointer p-1"
