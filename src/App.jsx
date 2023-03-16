@@ -6,7 +6,7 @@ import ApplyPage from "./Pages/ApplyPage";
 import ErrorPage from "./Pages/ErrorPage";
 import LoginPage from "./Pages/LoginPage";
 import Dashboard from "./Pages/student/dashboard";
-import FinancialAidPage from "./Pages/student/FinancialAidPage";
+import FinancialAidPage from "./Pages/student/financialAid/FinancialAidPage";
 import Interview from "./Pages/student/Interview";
 import Recommendation from "./Pages/student/Recommendation";
 import Review from "./Pages/student/Review";
@@ -44,33 +44,27 @@ function App() {
             <Route path="Tips" element={<ActivityTips />} />
             <Route path="Honor-and-Activity" element={<ActivityPage />} />
           </Route>
-
           <Route path="Essays" element={<EssaysLayout />}>
             <Route index element={<EssayIntroductionPage />} />
             <Route path="Edit-Essays" element={<EditEssayPage />} />
           </Route>
-
           <Route path="financial-aid" element={<FinancialAIdLayout />}>
-            <Route index element={<Construction />} />
-            <Route path="edit-financial-documents" element={<Construction />} />
+            <Route index element={<EssayIntroductionPage />} />
+            <Route path="edit-financial-documents" element={<FinancialAidPage />} />
           </Route>
-
           <Route path="recommendation" element={<RecomendationLayout />}>
-            <Route index element={<Construction />} />
+            <Route index element={<EssayIntroductionPage />} />
             <Route path="invite" element={<Construction />} />
           </Route>
-
           <Route path="interview" element={<InterviewLayout />}>
             <Route index element={<Construction />} />
           </Route>
-
           <Route path="Reviews" element={<Review />} />
-
           <Route path="notification" element={<ErrorPage />} />
-
           <Route path="chat" element={<ErrorPage />} />
         </Route>
 
+{/* //Admin Route */}
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Construction />} />
           <Route path="Students" element={<Students />} />

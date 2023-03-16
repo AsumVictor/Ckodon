@@ -143,7 +143,7 @@ export default function EssayForm() {
                       </label>
 
                       <label className="w-full">
-                        <span className="font-bold">Your written essay</span>{" "}
+                        <span className="font-bold">Your written essay</span>
                         <br />
                         <textarea
                           name="essayAnswer"
