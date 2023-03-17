@@ -27,6 +27,7 @@ import Applicants from "./Pages/admin/applicants";
 import AdminReview from "./Layout/admin/AdminReview";
 import UndergradReview from "./Pages/admin/review/undergrad";
 import GradReview from "./Pages/admin/review/graduate";
+import Recommendations from "./Pages/student/recommendation/recommensation";
 
 function App() {
   return (
@@ -54,7 +55,7 @@ function App() {
           </Route>
           <Route path="recommendation" element={<RecomendationLayout />}>
             <Route index element={<EssayIntroductionPage />} />
-            <Route path="invite" element={<Construction />} />
+            <Route path="invite" element={<Recommendations />} />
           </Route>
           <Route path="interview" element={<InterviewLayout />}>
             <Route index element={<Construction />} />
