@@ -22,12 +22,14 @@ import InterviewLayout from "./Layout/student/Interview";
 import EditEssayPage from "./Pages/student/essays/EditEssayPage";
 import EssayIntroductionPage from "./Pages/student/essays/Introduction";
 import AdminLayout from "./Layout/Admin.layout";
-import Students from "./Pages/admin/students";
+import Students from "./Pages/admin/students/students";
 import Applicants from "./Pages/admin/applicants";
 import AdminReview from "./Layout/admin/AdminReview";
 import UndergradReview from "./Pages/admin/review/undergrad";
 import GradReview from "./Pages/admin/review/graduate";
 import Recommendations from "./Pages/student/recommendation/recommensation";
+import StudentDetails from "./Pages/admin/students/StudentDetails";
+import AdminCurrentStudentLayout from "./Layout/admin/StudentLayout";
 
 function App() {
   return (
@@ -37,6 +39,8 @@ function App() {
         <Route path="/login" element={<LoginPage />} />
         <Route path="/apply" element={<ApplyPage />} />
         <Route path="*" element={<ErrorPage />} />
+
+        {/* Student Dashboard */}
         <Route element={<StudentLayout />}>
           <Route path="/dashboard" element={<Dashboard />} />
 
@@ -51,7 +55,10 @@ function App() {
           </Route>
           <Route path="financial-aid" element={<FinancialAIdLayout />}>
             <Route index element={<EssayIntroductionPage />} />
-            <Route path="edit-financial-documents" element={<FinancialAidPage />} />
+            <Route
+              path="edit-financial-documents"
+              element={<FinancialAidPage />}
+            />
           </Route>
           <Route path="recommendation" element={<RecomendationLayout />}>
             <Route index element={<EssayIntroductionPage />} />
@@ -65,18 +72,23 @@ function App() {
           <Route path="chat" element={<ErrorPage />} />
         </Route>
 
-{/* //Admin Route */}
+        {/* //Admin Route */}
         <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Construction />} />
-          <Route path="Students" element={<Students />} />
-          <Route path="Students/:name" element={<Construction />} />
+          <Route path="Students" element={<AdminCurrentStudentLayout />}>
+            <Route index element={<Students />} />
+            <Route path="name" element={<StudentDetails />} />
+          </Route>
+
           <Route path="New-applicants" element={<Applicants />} />
           <Route path="New-applicants/:name" element={<Construction />} />
+
           <Route path="sat-students" element={<Construction />} />
           <Route path="sat-students/:name" element={<Construction />} />
+
           <Route path="reviews" element={<AdminReview />}>
-              <Route index element={<UndergradReview />} />
-              <Route path="graduate" element={<GradReview />} />
+            <Route index element={<UndergradReview />} />
+            <Route path="graduate" element={<GradReview />} />
           </Route>
           <Route path="reviews/:id" element={<Construction />} />
           <Route path="broadcast" element={<Construction />} />

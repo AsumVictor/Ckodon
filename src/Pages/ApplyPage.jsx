@@ -586,7 +586,7 @@ export default function LoginPage() {
                   isDisabled ? "disabled" : "null"
                 } form-group border-4 mt-10`}
               >
-                
+                  
                 <label htmlFor="user-password">
                   Place of residence <span className="required">*</span>
                 </label>
