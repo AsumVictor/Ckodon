@@ -1,59 +1,76 @@
 import React, { useState, useEffect } from "react";
 import Lottie from "lottie-react";
 import NoContent from "../../../animations/no file.json";
-import PeopleLink from "../../../Components/LinkToPeople";
-import { Link } from "react-router-dom";
+
+import { NavLink, Outlet } from "react-router-dom";
+import UserData from "../../../assets/Data/UserData.json";
 import axios from "axios";
 
-export default function Students() {
-  const [activeTab, setactiveTab] = useState(1);
-  const URL = "https://api.sheety.co/6bac5f6ac5eac36da3d4457faca93361/userData/sheet1";
-  const [userData, setUserData] = useState([]);
+export default function StudentsLayout() {
+  const activeLink = {
+    backgroundColor: "#2455FE",
+    color: "white",
+  };
 
-  useEffect(() => {
-    const fetchUserData = async () => {
-      const data = await axios(URL);
-       setUserData(data.data.sheet1);
-    };
+  const [userData, setUserData] = useState(UserData.Sheet1);
+  const studentData = {
+    underGrade: [],
+    graduate: [],
+  }
 
-    fetchUserData();
-  }, []);
+  for (let i = 0; i < userData.length; i++) {
+    if (userData[i].UserRole == "Undergraduate") {
+     studentData.underGrade.push(userData[i])
+    }else if(userData[i].UserRole == "Graduate"){
+      studentData.graduate.push(userData[i])
+    }
+    
+  }
 
-  console.log(userData);
+  // const URL =
+  //   "https://sheet.best/api/sheets/dbd94950-d291-4305-8b3d-d0fe61d4b12";
+  // const [userData, setUserData] = useState(UserData);
+
+  // useEffect(() => {
+  //   const fetchUserData = async () => {
+  //     const data = await axios(URL);
+  //     setUserData(data.data);
+  //   };
+
+  //   fetchUserData();
+  // }, []);
 
   return (
     <section className="w-full py-3 relative flex flex-col items-center overflow-x-hidden">
-      <h2 className="text-2xl px-3 capitalize font-bold text-MdBlue text-center">
-        Current Students documents
-      </h2>
       <p className="px-3 w-full md:w-7/12 text-center">
-        All current students and their files
+        All enrolled students from both Graduate and Undergrate
       </p>
 
       {/* Content */}
-      <div className="flex flex-col w-full mt-10">
-        {/* TABS*/}
-        <div className="tabs flex flex-row justify-start md:justify-center px-3 w-full overflow-x-scroll bg-blue-100">
-          <div
-            className={`px-2 py-2 border-2 border-MdBlue ${
-              activeTab == 1 ? "bg-MdBlue text-white" : "bg-white text-MdBlue"
-            }  m-3 whitespace-nowrap transition-5 text-18 font-bold cursor-pointer rounded-md`}
-            onClick={() => setactiveTab(1)}
-          >
-            <p>Undergraduate school</p>
-          </div>
-          <div
-            className={`px-2 py-2 border-2 border-MdBlue ${
-              activeTab == 2 ? "bg-MdBlue text-white" : "bg-white text-MdBlue"
-            }  m-3 whitespace-nowrap transition-all text-18 font-bold cursor-pointer rounded-md`}
-            onClick={() => setactiveTab(2)}
-          >
-            <p>Graduate School</p>
-          </div>
-        </div>
+      <div className="flex flex-row justify-center overflow-x-auto flex-nowrap w-full mt-10 bg-blue-100">
+        <NavLink
+          to="."
+          className="px-3 py-1 border-2 border-MdBlue m-3 whitespace-nowrap
+         transition-5 text-18 font-bold cursor-pointer rounded-md
+         bg-white text-MdBlue"
+          style={({ isActive }) => (isActive ? activeLink : null)}
+          end="true"
+        >
+          Undergradute
+        </NavLink>
+        <NavLink
+          to="graduate"
+          className="px-3 py-1 border-2 border-MdBlue m-3 whitespace-nowrap
+         transition-5 text-18 font-bold cursor-pointer rounded-md
+         bg-white text-MdBlue"
+          style={({ isActive }) => (isActive ? activeLink : null)}
+        >
+          Gradute
+        </NavLink>
       </div>
 
-      {/* Reviewed Documents content */}
+      <Outlet context={studentData}/>
+      {/* Reviewed Documents content
       {activeTab == 1 && (
         <div className="w-full py-3 mt-10 pb-10 flex flex-col justify-center">
           <p className="text-MdBlue text-center font-bold text-18 underline capitalize">
@@ -81,7 +98,7 @@ export default function Students() {
               {userData.map(
                 (user) =>
                   user.UserRole == "Undergraduate" && (
-                    <Link key={user.ID}>
+                    <Link key={user.ID} to={`${user.ID}`}>
                       <PeopleLink name={user.FullName} gender={user.Gender} />
                     </Link>
                   )
@@ -118,7 +135,7 @@ export default function Students() {
               {userData.map(
                 (user) =>
                   user.UserRole == "Graduate" && (
-                    <Link key={user.ID}>
+                    <Link key={user.ID} to={`${user.ID}`}>
                       <PeopleLink name={user.FullName} gender={user.Gender} />
                     </Link>
                   )
@@ -126,7 +143,7 @@ export default function Students() {
             </div>
           )}
         </div>
-      )}
+      )} */}
     </section>
   );
 }

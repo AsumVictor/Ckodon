@@ -3,7 +3,7 @@ import React from "react";
 export default function PeopleLink(props) {
   return (
     <div
-      className=" bg-blue-400 mt-10 rounded-tr-3xl px-5 overflow-hidden flex flex-col py-2 justify-between rounded-md"
+      className=" bg-blue-400 mt-10 rounded-tr-3xl px-5 overflow-hidden m-5 flex flex-col py-2 justify-between rounded-md"
       style={{ height: "3cm", width: "5cm" }}
     >
       <div

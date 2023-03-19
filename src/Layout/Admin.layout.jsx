@@ -83,7 +83,7 @@ const AdminLayout = (props) => {
         className="sideNav-li"
         to={`${sidelink.path}`}
         style={({ isActive }) => (isActive ? activeStyles : null)}
-        end
+         end={sidelink.text=='Dashboard'? true : false}
       >
           {sidelink.icon}
           <span className="ml-2">{sidelink.text}</span>
