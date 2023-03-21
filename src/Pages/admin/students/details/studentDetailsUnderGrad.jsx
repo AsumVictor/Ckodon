@@ -10,7 +10,7 @@ export default function StudentDetailsUnderGrad() {
   const [isLoading, setIsLoading] = useState(false);
 
   const URL =
-    "https://sheet.best/api/sheets/dbd94950-d291-4305-8b3d-d0fe61d4b123";
+    "https://sheet.best/api/sheets/dbd94950-d291-4305-8b3d-d0fe61d4b12";
 
   useEffect(() => {
     const fetchUserData = async () => {

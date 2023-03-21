@@ -23,7 +23,7 @@ import EditEssayPage from "./Pages/student/essays/EditEssayPage";
 import EssayIntroductionPage from "./Pages/student/essays/Introduction";
 import AdminLayout from "./Layout/Admin.layout";
 import StudentSharedLayout from "./Layout/admin/students/StudentSharedLayout";
-import Applicants from "./Pages/admin/applicants";
+import ApplicantsLayout from "./Layout/admin/ApplicantsLayout";
 import AdminReview from "./Layout/admin/AdminReview";
 import UndergradReview from "./Pages/admin/review/undergrad";
 import GradReview from "./Pages/admin/review/graduate";
@@ -33,6 +33,10 @@ import AdminCurrentStudentLayout from "./Layout/admin/students/StudentLayout";
 import UnderGrad from "./Pages/admin/students/underGrad";
 import Gradute from "./Pages/admin/students/Graduate";
 import StudentDetailsGradute from "./Pages/admin/students/details/StudentDetailsGraduate ";
+import GraduatesApplicants from "./Pages/admin/applicants/GraduateApplicants";
+import UndergradApplicants from "./Pages/admin/applicants/undergradApplicants";
+import DetailGraduateDoc from "./Pages/admin/review/details/DetailGrduateDoc";
+import DetailUndergradDoc from "./Pages/admin/review/details/DetailUnderGradDocument";
 
 function App() {
   return (
@@ -81,26 +85,41 @@ function App() {
           <Route element={<AdminCurrentStudentLayout />}>
             {/* Students Documents: It contains Graduate and Undergradute Students. 
             When click on Gradute will take to new page to display student ingo */}
-            <Route path="students" element={<StudentSharedLayout />} >
+            <Route path="students" element={<StudentSharedLayout />}>
               <Route index element={<UnderGrad />} />
               <Route path="graduate" element={<Gradute />} />
             </Route>
             <Route path="students/:id" element={<StudentDetailsUndergrad />} />
-            <Route path="students/graduate/:id" element={<StudentDetailsGradute />} />
+            <Route
+              path="students/graduate/:id"
+              element={<StudentDetailsGradute />}
+            />
           </Route>
 
-{/* New Applicants to Admin Board */}
-          <Route path="New-applicants" element={<Applicants />} />
-          <Route path="New-applicants/:name" element={<Construction />} />
+          {/* New Applicants to Admin Board */}
+          <Route path="New-applicants" element={<ApplicantsLayout />}>
+            <Route index element={<UndergradApplicants />} />
+            <Route path="graduate" element={<GraduatesApplicants />} />
+          </Route>
+          <Route path="New-applicants/:id" element={<Construction />} />
+          <Route
+            path="New-applicants/graduate/:id"
+            element={<Construction />}
+          />
 
-          <Route path="sat-students" element={<Construction />} />
-          <Route path="sat-students/:name" element={<Construction />} />
-
+          {/* Reviewed Activities */}
           <Route path="reviews" element={<AdminReview />}>
             <Route index element={<UndergradReview />} />
             <Route path="graduate" element={<GradReview />} />
           </Route>
-          <Route path="reviews/:id" element={<Construction />} />
+          <Route path="reviews/:id" element={<DetailUndergradDoc />} />
+          <Route path="reviews/graduate/:id" element={<DetailGraduateDoc />} />
+
+
+
+          <Route path="sat-students" element={<Construction />} />
+          <Route path="sat-students/:name" element={<Construction />} />
+
           <Route path="broadcast" element={<Construction />} />
           <Route path="chat" element={<Construction />} />
         </Route>
