@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 import "../css/loginpage.css";
 import { HiBadgeCheck } from "react-icons/hi";
 import { HiArrowRightOnRectangle } from "react-icons/hi2";
@@ -42,7 +43,7 @@ export default function LoginPage() {
     <main className="flex flex-row px-0 flex-wrap">
       <section
         className="hidden md:w-5/12 md:flex md:flex-col justify-center
-       bg-MdBlue500 py-10 fixed"
+       bg-MdBlue py-10 fixed"
         style={{ height: "100vh" }}
       >
         <h1 className="text-4xl p-10 font-bold text-white">
@@ -54,7 +55,7 @@ export default function LoginPage() {
         className="hidden md:w-5/12 md:flex  "
         style={{ height: "100vh" }}
       ></section>
-      <section className="w-full flex flex-col items-center md:w-7/12 py-10">
+      <section className="w-full flex flex-col items-center md:w-7/12 py-10 px-10">
         <h2 className="text-center text-MdBlue font-bold text-4xl mt-10">
           Welcome Back!
         </h2>
@@ -63,7 +64,7 @@ export default function LoginPage() {
         </p>
 
         <form onSubmit={handleSubmit} className="mt-10 flex flex-col">
-          <div className="w-full border-2 px-5 rounded-md flex flex-col pb-3">
+          <div className="w-full  px-1 rounded-md flex flex-col pb-3">
             <h4 className="-mt-3 ">
               <span className="bg-white px-2">I'm signing in as</span>
               <span className="required bg-white pr-2">*</span>
@@ -195,11 +196,21 @@ export default function LoginPage() {
           </button>
           <p className="mt-10 ">
             Need an Account :
-            <a href="#" className="text-MdBlue font-extrabold underline ml-1">
+            <Link to='/apply' className={`${isDisabled? 'text-gray-400 cursor-not-allowed': 'text-MdBlue '} font-extrabold underline ml-1`}
+              onClick={(e)=> isDisabled ? e.preventDefault(): null}>
               Apply
-            </a>
+            </Link>
           </p>
         </form>
+
+        <Link to='/dashboard'
+        className="mt-10 text-red-400  font-bold underline">
+         Click this Temporary Link to dashboard
+        </Link>
+        <Link to='/admin'
+        className="mt-10 text-red-400  font-bold underline">
+         Click this Temporary Link to Admin Dashboard
+        </Link>
       </section>
     </main>
   );

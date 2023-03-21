@@ -10,6 +10,7 @@ module.exports = {
         DeepBlue: "#310BFE",
       },
       fontSize: {
+        15: '15px',
         18: "18px",
         20: "20px",
       },

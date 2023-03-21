@@ -4,20 +4,24 @@ import SideNav from "../Components/Sidenav";
 import { NavLink, Link, Outlet } from "react-router-dom";
 import NoticationIcon from "../Components/notificationIcon";
 import {
+  HiCurrencyDollar,
   HiHome,
   HiBookOpen,
+  HiBell,
   HiUserGroup,
   HiUsers,
+  HiInbox,
   HiArrowLeftOnRectangle,
 } from "react-icons/hi2";
 import {
+  HiPencilAlt,
   HiChatAlt2,
   HiClipboardList,
   HiOutlineCog,
 } from "react-icons/hi";
 import "../index.css";
 
-const AdminLayout = (props) => {
+const StudentLayout = (props) => {
   //Navigation
   const [show, setShow] = useState(false);
   const [dropDownProfile, setDropDownProfile] = useState(false);
@@ -37,39 +41,48 @@ const AdminLayout = (props) => {
     {
       text: "Dashboard",
       icon: <HiHome />,
-      path: ".",
+      path: "/dashboard",
     },
     {
-      text: "Students",
+      text: "Activities",
       icon: <HiClipboardList />,
-      path: "Students",
+      path: "/activities",
     },
     {
-      text: "New applicants",
-      icon: < HiUserGroup />,
-      path: "New-applicants",
+      text: "Essays",
+      icon: <HiPencilAlt />,
+      path: "/essays",
     },
     {
-      text: "sat students",
-      icon: <HiBookOpen />,
-      path: "sat-students",
+      text: "Recommendation",
+      icon: <HiInbox />,
+      path: "/recommendation",
     },
     {
-      text: "task reviews",
-      icon: <HiClipboardList />,
-      path: "reviews",
+      text: "Aid",
+      icon: <HiCurrencyDollar />,
+      path: "/financial-aid",
     },
     {
-      text: "broadcast",
+      text: "interview",
       icon: <HiUsers />,
-      path: "broadcast",
+      path: "/interview",
+    },
+    {
+      text: "notification",
+      icon: <HiBell />,
+      path: "/notification",
+    },
+    {
+      text: "reviews",
+      icon: <HiClipboardList />,
+      path: "/reviews",
     },
     {
       text: "chat",
       icon: <HiChatAlt2 />,
-      path: "chat",
+      path: "/chat",
     },
- 
   ];
 
   const activeStyles = {
@@ -83,7 +96,6 @@ const AdminLayout = (props) => {
         className="sideNav-li"
         to={`${sidelink.path}`}
         style={({ isActive }) => (isActive ? activeStyles : null)}
-         end={sidelink.text=='Dashboard'? true : false}
       >
           {sidelink.icon}
           <span className="ml-2">{sidelink.text}</span>
@@ -94,7 +106,7 @@ const AdminLayout = (props) => {
   return (
     <main>
       <Navbar isShow={show} handleToggleNav={toggleNav}>
-        <p className="font-bold text-2xl text-MdBlue">ADMIN</p>
+        <p className="font-bold text-2xl text-MdBlue">CKODON</p>
         <div className="profile relative flex flex-row items-center space-x-5">
           <div
             className="profilePic bg-blue-800 rounded-full cursor-pointer p-1"
@@ -146,4 +158,4 @@ const AdminLayout = (props) => {
   );
 };
 
-export default AdminLayout;
+export default StudentLayout;
