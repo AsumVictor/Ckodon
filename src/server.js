@@ -61,7 +61,7 @@ export default function () {
       });
 
       //Seed for New undergraduate applicants 
-      server.create("underGraduateApplicant", {
+       server.create("underGraduateApplicant", {
         id: "1",
         FirstName: "Aksum",
         LastName: 'Victor',
@@ -79,11 +79,32 @@ export default function () {
         EssayQuestion: '',
         EssayAnswer: '',
         EssayAnswerPDF: '',
+        DateAndTime:'Mar 22 2023, 14:30pm'
+      });
+       server.create("underGraduateApplicant", {
+        id: "2",
+        FirstName: "Amakye",
+        LastName: 'Kogi',
+        Email: "seleson@grtg.com",
+        Password: "erg5hg676jg54g54g56h67jh",
+        UserRole: "Admin",
+        Location: "Kumasi",
+        DateOfBirth: " 10/21/1231",
+        School: "Dadiaso Shs",
+        Gender: "Male",
+        Phone: "65466464356",
+        CurrentUniversity: '',
+        YearOfCompletion:'',
+        WasscePDF: '',
+        EssayQuestion: '',
+        EssayAnswer: '',
+        EssayAnswerPDF: '',
+        DateAndTime:'Mar 22 2023, 14:30pm'
       });
       server.create("underGraduateApplicant", {
-        id: "1",
-        FirstName: "Aksum",
-        LastName: 'Victor',
+        id: "3",
+        FirstName: "Lord",
+        LastName: 'Dumbp',
         Email: "seleson@grtg.com",
         Password: "erg5hg676jg54g54g56h67jh",
         UserRole: "Admin",
@@ -98,25 +119,7 @@ export default function () {
         EssayQuestion: '',
         EssayAnswer: '',
         EssayAnswerPDF: '',
-      });
-      server.create("underGraduateApplicant", {
-        id: "1",
-        FirstName: "Aksum",
-        LastName: 'Victor',
-        Email: "seleson@grtg.com",
-        Password: "erg5hg676jg54g54g56h67jh",
-        UserRole: "Admin",
-        Location: "Kumasi",
-        DateOfBirth: " 10/21/1231",
-        School: "Dadiaso Shs",
-        Gender: "Male",
-        Phone: "65466464356",
-        CurrentUniversity: '',
-        YearOfCompletion:'',
-        WasscePDF: '',
-        EssayQuestion: '',
-        EssayAnswer: '',
-        EssayAnswerPDF: '',
+        DateAndTime:'Mar 22 2023, 14:30pm'
       });
     },
 

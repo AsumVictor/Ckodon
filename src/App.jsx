@@ -38,6 +38,7 @@ import GraduatesApplicants from "./Pages/admin/applicants/GraduateApplicants";
 import UndergradApplicants from "./Pages/admin/applicants/undergradApplicants";
 import DetailGraduateDoc from "./Pages/admin/review/details/DetailGrduateDoc";
 import DetailUndergradDoc from "./Pages/admin/review/details/DetailUnderGradDocument";
+import UndergradApplicantDetails from "./Pages/admin/applicants/Details.jsx/UnderGradApplicantDetails";
 
 function App() {
   return (
@@ -102,7 +103,7 @@ function App() {
             <Route index element={<UndergradApplicants />} />
             <Route path="graduate" element={<GraduatesApplicants />} />
           </Route>
-          <Route path="New-applicants/:id" element={<Construction />} />
+          <Route path="New-applicants/:id" element={<UndergradApplicantDetails />} />
           <Route
             path="New-applicants/graduate/:id"
             element={<Construction />}
