@@ -1,6 +1,7 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 import "./App.css";
+
 import StudentLayout from "./Layout/StudentLayout";
 import ApplyPage from "./Pages/ApplyPage";
 import ErrorPage from "./Pages/ErrorPage";

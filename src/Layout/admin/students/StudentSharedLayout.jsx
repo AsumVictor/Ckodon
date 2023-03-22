@@ -3,8 +3,6 @@ import Lottie from "lottie-react";
 import NoContent from "../../../animations/no file.json";
 
 import { NavLink, Outlet } from "react-router-dom";
-import UserData from "../../../assets/Data/UserData.json";
-import axios from "axios";
 
 export default function StudentsLayout() {
   const activeLink = {
@@ -12,34 +10,7 @@ export default function StudentsLayout() {
     color: "white",
   };
 
-  const [userData, setUserData] = useState(UserData.Sheet1);
-  const studentData = {
-    underGrade: [],
-    graduate: [],
-  }
-
-  for (let i = 0; i < userData.length; i++) {
-    if (userData[i].UserRole == "Undergraduate") {
-     studentData.underGrade.push(userData[i])
-    }else if(userData[i].UserRole == "Graduate"){
-      studentData.graduate.push(userData[i])
-    }
-    
-  }
-
-  // const URL =
-  //   "https://sheet.best/api/sheets/dbd94950-d291-4305-8b3d-d0fe61d4b12";
-  // const [userData, setUserData] = useState(UserData);
-
-  // useEffect(() => {
-  //   const fetchUserData = async () => {
-  //     const data = await axios(URL);
-  //     setUserData(data.data);
-  //   };
-
-  //   fetchUserData();
-  // }, []);
-
+  
   return (
     <section className="w-full py-3 relative flex flex-col items-center overflow-x-hidden">
       <p className="px-3 w-full md:w-7/12 text-center">
@@ -69,7 +40,7 @@ export default function StudentsLayout() {
         </NavLink>
       </div>
 
-      <Outlet context={studentData}/>
+      <Outlet/>
       {/* Reviewed Documents content
       {activeTab == 1 && (
         <div className="w-full py-3 mt-10 pb-10 flex flex-col justify-center">
