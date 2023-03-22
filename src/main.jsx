@@ -13,7 +13,7 @@ if (
   process.env.NODE_ENV === "production" ||
   process.env.REACT_APP_DEMO
 ) {
-  makeFinalServer(); // For a live demo when deploying to Vercel
+  makeServer(); // For a live demo when deploying to Vercel
 }
 
 ReactDOM.createRoot(document.getElementById('root')).render(
