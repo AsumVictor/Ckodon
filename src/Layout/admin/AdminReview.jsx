@@ -22,7 +22,7 @@ export default function AdminReview() {
             className="px-2 py-1 border-2 border-MdBlue bg-white text-MdBlue mx-3 whitespace-nowrap transition-5 text-18 font-bold cursor-pointer rounded-md"
             style={({ isActive }) => (isActive ? activeStyles : null)}
       >
-         Undergraduate Students
+         Undergraduate
       </NavLink>
 
       <NavLink
@@ -31,9 +31,8 @@ export default function AdminReview() {
             className="px-2 py-1 border-2 border-MdBlue bg-white text-MdBlue mx3 whitespace-nowrap transition-5 text-18 font-bold cursor-pointer rounded-md"
             style={({ isActive }) => (isActive ? activeStyles : null)}
       >
-         Graduate Students
+         Graduate
       </NavLink>
-
      </div>
 
      <Outlet />

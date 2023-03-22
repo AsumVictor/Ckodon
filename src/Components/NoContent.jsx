@@ -1,13 +1,13 @@
 import React from 'react';
 import Lottie from "lottie-react";
-import NoContent from "../../animations/no file.json";
+import NoContentAnimate from "../animations/no file.json";
 
 export default function NoContent(props){
     return(
         <div className="mt-10 w-full flex flex-col justify-center items-center">
         <div className="animation-box">
           <Lottie
-            animationData={NoContent}
+            animationData={NoContentAnimate}
             loop={false}
             style={{ width: "250px" }}
           />
