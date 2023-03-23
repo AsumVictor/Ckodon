@@ -12,7 +12,7 @@ export default function () {
     //Initial Values
     seeds(server) {
       server.create("user", {
-        id: "1",
+        id: nanoid(),
         FullName: "Asum Victor",
         Email: "Yoguay@grtg.com",
         Password: "erg5hg676jg54g54g56h67jh",
@@ -25,7 +25,7 @@ export default function () {
         updated: true,
       });
       server.create("user", {
-        id: "2",
+        id: nanoid(),
         FullName: "Opoku Ware",
         Email: "Yoguay@grtg.com",
         Password: "erg5hg676jg54g54g56h67jh",
@@ -38,7 +38,7 @@ export default function () {
         updated: false,
       });
       server.create("user", {
-        id: "3",
+        id: nanoid(),
         FullName: "Agyeiwaa Victoria",
         Email: "Yoguay@grtg.com",
         Password: "erg5hg676jg54g54g56h67jh",
@@ -50,7 +50,7 @@ export default function () {
         Phone: "65466464356",
       });
       server.create("user", {
-        id: "1",
+        id: nanoid(),
         FullName: "Aksum Empire",
         Email: "seleson@grtg.com",
         Password: "erg5hg676jg54g54g56h67jh",
@@ -64,7 +64,7 @@ export default function () {
 
       //Seed for New undergraduate applicants 
        server.create("underGraduateApplicant", {
-        id: "1",
+        id: nanoid(),
         FirstName: "Aksum",
         LastName: 'Victor',
         Email: "seleson@grtg.com",
@@ -84,7 +84,7 @@ export default function () {
         DateAndTime:'Mar 22 2023, 14:30pm'
       });
        server.create("underGraduateApplicant", {
-        id: "2",
+        id: nanoid(),
         FirstName: "Amakye",
         LastName: 'Kogi',
         Email: "seleson@grtg.com",
@@ -104,7 +104,7 @@ export default function () {
         DateAndTime:'Mar 22 2023, 14:30pm'
       });
       server.create("underGraduateApplicant", {
-        id: "3",
+        id: nanoid(),
         FirstName: "Lord",
         LastName: 'Dumbp',
         Email: "seleson@grtg.com",

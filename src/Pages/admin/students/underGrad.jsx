@@ -17,8 +17,8 @@ export default function UnderGrad() {
     <div className="flex flex-auto justify-around mt-5 flex-wrap px-3 md:px-10 ">
       {users &&
         users.map((user) => (
-          <Link
-          to={`${user.Id}`}
+          <Link key={user.id}
+          to={`${user.id}`}
           >
             <PeopleLink 
             name={user.FullName}

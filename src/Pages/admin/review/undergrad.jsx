@@ -3,17 +3,35 @@ import { HiBriefcase, HiCurrencyDollar } from "react-icons/hi";
 import Loader from "../../../Components/Loader";
 import NoContent from "../../../Components/NoContent";
 import { Link } from "react-router-dom";
+import { useSearchParams } from "react-router-dom";
 
 export default function UndergradReview() {
-  const [reviewDocuments, setReviewDocuments] = useState();
+  const [reviews, setReviews] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const typeFilter = searchParams.get("type");
+
+  let reviewDocument = typeFilter
+    ? reviews.filter((child) => child.type.toLowerCase() == typeFilter)
+    : reviews;
+
+  function FilterSearch(key, value) {
+    setSearchParams((prevParams) => {
+      if (value == null) {
+        prevParams.delete(key);
+      } else {
+        prevParams.set(key, value);
+      }
+      return prevParams;
+    });
+  }
 
   useEffect(() => {
     setIsLoading(true);
     fetch("/api/uGReviews")
       .then((response) => response.json())
       .then((data) => {
-        setReviewDocuments(data.uGReviews);
+        setReviews(data.uGReviews);
       })
       .finally(() => {
         setIsLoading(false);
@@ -22,22 +40,51 @@ export default function UndergradReview() {
 
   return (
     <>
-      {reviewDocuments?.length && (
+      {reviews?.length && (
         <section className="w-full py-3 relative flex flex-col items-center overflow-x-hidden px-3 md:px-10">
           <div className="flex flex-auto justify-center gap-3 flex-wrap">
-            <FilterButton text="all" />
-            <FilterButton text="honors" />
-            <FilterButton text="activities" />
-            <FilterButton text="essays" />
-            <FilterButton text="financial aid" />
-            <FilterButton text="recommendations" />
+
+            <FilterButton
+              text="honors"
+              handleFilter={FilterSearch}
+              type={"honors"}
+              typeFilter={typeFilter}
+            />
+            <FilterButton
+              text="activities"
+              handleFilter={FilterSearch}
+              type={"activities"}
+              typeFilter={typeFilter}
+            />
+            <FilterButton
+              text="essays"
+              handleFilter={FilterSearch}
+              type={"essays"}
+              typeFilter={typeFilter}
+            />
+            <FilterButton
+              text="financial aid"
+              handleFilter={FilterSearch}
+              type={"financial aid"}
+              typeFilter={typeFilter}
+            />
+            <FilterButton
+              text="recommendations"
+              handleFilter={FilterSearch}
+              type={"recommendation"}
+              typeFilter={typeFilter}
+            />
+
+            <button className="text-red-500 underline"
+            onClick={() => FilterSearch("type", null)}
+            >Clear Filter</button>
           </div>
 
           <div
             className="flex flex-col items-center w-full md:w-10/12 bg-slate-100 py-10 px-2
            md:px-10 mt-10 rounded-2xl"
           >
-            {reviewDocuments?.map((reviewDocument, index) => (
+            {reviewDocument?.map((reviewDocument, index) => (
               <ReviewContainer
                 key={reviewDocument.id}
                 order={index + 1}
@@ -45,6 +92,7 @@ export default function UndergradReview() {
                 deadline={reviewDocument.deadline}
                 date={reviewDocument.date}
                 path={`${reviewDocument.id}`}
+                search={{path: searchParams.toString() }}
               />
             ))}
           </div>
@@ -59,7 +107,12 @@ export default function UndergradReview() {
 
 export function FilterButton(props) {
   return (
-    <button className="py-1 px-3 bg-red-100 capitalize whitespace-nowrap rounded-md font-semibold border-2 border-red-100">
+    <button
+      onClick={() => props.handleFilter("type", `${props.type}`)}
+      className={`py-1 px-3 ${
+        props.typeFilter == props.type ? "bg-red-100" : null
+      } capitalize whitespace-nowrap rounded-md font-semibold border-2 border-red-100`}
+    >
       {props.text}
     </button>
   );
@@ -69,6 +122,7 @@ export function ReviewContainer(props) {
   return (
     <Link
       to={props.path}
+      state={props.search}
       className="flex justify-center gap-2 flex-row items-center w-full px-2 mt-10 md:px-5 md:w-10/12 py-2 bg-blue-200 rounded-lg relative"
     >
       <div className="absolute top-1 left-1 px-2 text-lg font-bold text-white rounded-full bg-MdBlue">
