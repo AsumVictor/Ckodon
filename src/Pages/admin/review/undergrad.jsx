@@ -2,14 +2,14 @@ import React, { useState, useEffect } from "react";
 import { HiBriefcase, HiCurrencyDollar } from "react-icons/hi";
 import Loader from "../../../Components/Loader";
 import NoContent from "../../../Components/NoContent";
-import { Link } from "react-router-dom";
-import { useSearchParams } from "react-router-dom";
+import { Link, useLoaderData, useSearchParams } from "react-router-dom";
+import { getUndergradReviews } from "../../../api";
 
 export default function UndergradReview() {
-  const [reviews, setReviews] = useState([]);
-  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState(null);
   const [searchParams, setSearchParams] = useSearchParams();
   const typeFilter = searchParams.get("type");
+  const reviews = useLoaderData();
 
   let reviewDocument = typeFilter
     ? reviews.filter((child) => child.type.toLowerCase() == typeFilter)
@@ -26,24 +26,11 @@ export default function UndergradReview() {
     });
   }
 
-  useEffect(() => {
-    setIsLoading(true);
-    fetch("/api/uGReviews")
-      .then((response) => response.json())
-      .then((data) => {
-        setReviews(data.uGReviews);
-      })
-      .finally(() => {
-        setIsLoading(false);
-      });
-  }, []);
-
   return (
     <>
       {reviews?.length && (
         <section className="w-full py-3 relative flex flex-col items-center overflow-x-hidden px-3 md:px-10">
           <div className="flex flex-auto justify-center gap-3 flex-wrap">
-
             <FilterButton
               text="honors"
               handleFilter={FilterSearch}
@@ -75,32 +62,76 @@ export default function UndergradReview() {
               typeFilter={typeFilter}
             />
 
-            <button className="text-red-500 underline"
-            onClick={() => FilterSearch("type", null)}
-            >Clear Filter</button>
-          </div>
-
-          <div
-            className="flex flex-col items-center w-full md:w-10/12 bg-slate-100 py-10 px-2
-           md:px-10 mt-10 rounded-2xl"
-          >
-            {reviewDocument?.map((reviewDocument, index) => (
-              <ReviewContainer
-                key={reviewDocument.id}
-                order={index + 1}
-                type={reviewDocument.type}
-                deadline={reviewDocument.deadline}
-                date={reviewDocument.date}
-                path={`${reviewDocument.id}`}
-                search={{path: searchParams.toString() }}
-              />
-            ))}
+            <button
+              className="text-red-500 underline"
+              onClick={() => FilterSearch("type", null)}
+            >
+              Clear Filter
+            </button>
           </div>
         </section>
       )}
 
-      {/* Tempory Loader */}
-      {isLoading && <Loader />}
+      {reviewDocument && (
+        <div class="w-full relative overflow-x-auto mt-10 shadow-md sm:rounded-lg">
+          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-blue-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" class="px-6 py-3">
+                  NO.
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  ID
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Document Type
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Status
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Date/Time
+                </th>
+                <th scope="col" class="px-6 py-3"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {reviewDocument.map((document, index) => (
+                <tr class="bg-white border-b-2 hover:bg-gray-100 cursor-pointer dark:bg-gray-900 dark:border-gray-700">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-bold text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    {index + 1}
+                  </th>
+                  <td class="px-6 py-4">{document.id}</td>
+                  <td class="px-6 py-4 capitalize"> {document.type}</td>
+                  <td
+                    class={`px-6 py-4 capitalize ${
+                      document.status == "pending"
+                        ? "text-blue-500"
+                        : document.status == "approved"
+                        ? "text-green-500"
+                        : "text-red-500"
+                    }`}
+                  >
+                    {document.status}
+                  </td>
+                  <td class="px-6 py-4">{document.date}</td>
+                  <td class="px-6 py-4">
+                    <Link
+                      to={`${document.id}`}
+                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Review
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </>
   );
 }
@@ -118,28 +149,6 @@ export function FilterButton(props) {
   );
 }
 
-export function ReviewContainer(props) {
-  return (
-    <Link
-      to={props.path}
-      state={props.search}
-      className="flex justify-center gap-2 flex-row items-center w-full px-2 mt-10 md:px-5 md:w-10/12 py-2 bg-blue-200 rounded-lg relative"
-    >
-      <div className="absolute top-1 left-1 px-2 text-lg font-bold text-white rounded-full bg-MdBlue">
-        {props.order}
-      </div>
-      <div className="mt-4 text-3xl">
-        <HiCurrencyDollar />
-      </div>
-      <div className="flex w-full flex-col mt-4 gap-1 items-center">
-        <h3 className="self-start md:pl-10 font-bold text-2xl capitalize">
-          {props.type}
-        </h3>
-        <h3 className="md:self-start md:pl-20 text-red-700">
-          Deadline: {props.deadline}
-        </h3>
-        <h3 className="self-end text-gray-600">Submitted on: {props.date}</h3>
-      </div>
-    </Link>
-  );
+export function loader() {
+  return getUndergradReviews();
 }

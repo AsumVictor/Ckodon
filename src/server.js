@@ -12,7 +12,7 @@ export default function () {
     //Initial Values
     seeds(server) {
       server.create("user", {
-        id: nanoid(),
+        id: nanoid(6),
         FullName: "Asum Victor",
         Email: "Yoguay@grtg.com",
         Password: "erg5hg676jg54g54g56h67jh",
@@ -25,7 +25,7 @@ export default function () {
         updated: true,
       });
       server.create("user", {
-        id: nanoid(),
+        id: nanoid(6),
         FullName: "Opoku Ware",
         Email: "Yoguay@grtg.com",
         Password: "erg5hg676jg54g54g56h67jh",
@@ -38,7 +38,7 @@ export default function () {
         updated: false,
       });
       server.create("user", {
-        id: nanoid(),
+        id: nanoid(6),
         FullName: "Agyeiwaa Victoria",
         Email: "Yoguay@grtg.com",
         Password: "erg5hg676jg54g54g56h67jh",
@@ -50,7 +50,7 @@ export default function () {
         Phone: "65466464356",
       });
       server.create("user", {
-        id: nanoid(),
+        id: nanoid(6),
         FullName: "Aksum Empire",
         Email: "seleson@grtg.com",
         Password: "erg5hg676jg54g54g56h67jh",
@@ -64,7 +64,7 @@ export default function () {
 
       //Seed for New undergraduate applicants 
        server.create("underGraduateApplicant", {
-        id: nanoid(),
+        id: nanoid(6),
         FirstName: "Aksum",
         LastName: 'Victor',
         Email: "seleson@grtg.com",
@@ -84,7 +84,7 @@ export default function () {
         DateAndTime:'Mar 22 2023, 14:30pm'
       });
        server.create("underGraduateApplicant", {
-        id: nanoid(),
+        id: nanoid(6),
         FirstName: "Amakye",
         LastName: 'Kogi',
         Email: "seleson@grtg.com",
@@ -104,7 +104,7 @@ export default function () {
         DateAndTime:'Mar 22 2023, 14:30pm'
       });
       server.create("underGraduateApplicant", {
-        id: nanoid(),
+        id: nanoid(6),
         FirstName: "Lord",
         LastName: 'Dumbp',
         Email: "seleson@grtg.com",
@@ -126,44 +126,94 @@ export default function () {
 
       //Seeds for Review Documents
       server.create("uGReview", {
-        id: nanoid(),
+        id: nanoid(6),
         student_id: '1',
         document_id: '1',
         type:'financial aid',
         date: 'Feb 20, 2022',
-        deadline:'feb 15, 2016'
+        deadline:'feb 15, 2016',
+        status: 'pending'
       });
       server.create("uGReview", {
-        id: nanoid(),
+        id: nanoid(6),
         student_id: '1',
         document_id: '1',
         type:'Honors',
         date: 'Feb 20, 2022',
-        deadline:'feb 15, 2016'
+        deadline:'feb 15, 2016',
+        status: 'approved'
       });
       server.create("uGReview", {
-        id: nanoid(),
+        id: nanoid(6),
         student_id: '3',
         document_id: '1',
         type:'Activities',
         date: 'Feb 20, 2022',
-        deadline:'feb 15, 2016'
+        deadline:'feb 15, 2016',
+        status: 'rejected'
       });
       server.create("uGReview", {
-        id: nanoid(),
+        id: nanoid(6),
         student_id: '2',
         document_id: '6',
         type:'recommendation',
         date: 'Feb 20, 2022',
-        deadline:'feb 15, 2016'
+        deadline:'feb 15, 2016',
+        status: 'approved'
       });
       server.create("uGReview", {
-        id: nanoid(),
+        id: nanoid(6),
         student_id: '1',
         document_id: '4',
         type:'essays',
         date: 'Feb 20, 2022',
-        deadline:'feb 15, 2016'
+        deadline:'feb 15, 2016',
+        status: 'rejected'
+      });
+      server.create("uGReview", {
+        id: nanoid(6),
+        student_id: '1',
+        document_id: '3',
+        type:'financial aid',
+        date: 'Feb 20, 2022',
+        deadline:'feb 15, 2016',
+        status: 'pending'
+      });
+      server.create("uGReview", {
+        id: nanoid(6),
+        student_id: '1',
+        document_id: '1',
+        type:'Honors',
+        date: 'Feb 20, 2022',
+        deadline:'feb 15, 2016',
+        status: 'approved'
+      });
+      server.create("uGReview", {
+        id: nanoid(6),
+        student_id: '3',
+        document_id: '1',
+        type:'Activities',
+        date: 'Feb 20, 2022',
+        deadline:'feb 15, 2016',
+        status: 'approved'
+      });
+      server.create("uGReview", {
+        id: nanoid(6),
+        student_id: '2',
+        document_id: '6',
+        type:'recommendation',
+        date: 'Feb 20, 2022',
+        deadline:'feb 15, 2016',
+        status: 'pending'
+      });
+      server.create("uGReview", {
+        id: nanoid(6),
+        student_id: '1',
+        document_id: '4',
+        type:'recommendation',
+        date: 'Mar 20, 2023',
+        deadline:'feb 15, 2016',
+        status: 'approved'
       });
 
 

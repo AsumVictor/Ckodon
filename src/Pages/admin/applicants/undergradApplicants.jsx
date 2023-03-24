@@ -1,48 +1,68 @@
 import React, { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import Loader from '../../../Components/Loader'
-
+import { Link, useLoaderData } from "react-router-dom";
+import Loader from "../../../Components/Loader";
+import { getUnderGraduateApplicants } from "../../../api";
 
 export default function UndergradApplicants() {
-  const [applicants, setapplicants] = useState();
-
-  useEffect(() => {
-    fetch("/api/underGraduateApplicants")
-      .then((response) => response.json())
-      .then((data) => {
-        setapplicants(data.underGraduateApplicants);
-      });
-  }, []);
+  const applicants = useLoaderData();
 
   return (
     <>
-{applicants && (
-    <section className="w-full flex flex-col items-center md:w-10/12 px-2 md:px-5 py-10 bg-gray-50 rounded-2xl">
-      {/* Loop and Render each Applicant Data */}
-      {applicants.map((applicant, index) => (
-        <Link
-          to={`${applicant.id}`}
-          className="flex flex-row w-full justify-between mt-7 items-center hover:bg-slate-400 
-          cursor-pointer bg-gray-300 px-2 py-1 rounded-xl"
-        >
-          <div className="p-2 bg-MdBlue rounded-full text-white font-bold">
-            {index + 1}
-          </div>
-          <h3 className=" whitespace-nowrap text-20 font-bold capitalize">
-            {`${applicant.FirstName} ${applicant.LastName}`}
-          </h3>
-          <p>{applicant.DateAndTime}</p>
-        </Link>
-      ))}
-    </section>
-)}
-
-{!applicants && (
-   <Loader />
-)}
-
-
+      <h1 className="mt-10 text-gray-500 underline">
+        List of all undergraduate applicants 2023/2024
+      </h1>
+      {applicants && (
+        <div class="w-full relative overflow-x-auto mt-10 shadow-md sm:rounded-lg">
+          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-blue-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" class="px-6 py-3">
+                  NO.
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Student Name
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Residence
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Date/Time
+                </th>
+                <th scope="col" class="px-6 py-3"></th>
+              </tr>
+            </thead>
+            <tbody>
+              {applicants.map((applicant, index) => (
+                <tr class="bg-white border-b-2 hover:bg-gray-100 cursor-pointer dark:bg-gray-900 dark:border-gray-700">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-bold text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    {index + 1}
+                  </th>
+                  <td class="px-6 py-4">
+                    {`${applicant.FirstName} ${applicant.LastName}`}
+                  </td>
+                  <td class="px-6 py-4">{applicant.Location}</td>
+                  <td class="px-6 py-4">{applicant.DateAndTime}</td>
+                  <td class="px-6 py-4">
+                    <Link
+                      to={`${applicant.id}`}
+                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Review
+                    </Link>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+      )}
     </>
- 
   );
+}
+
+export function loader() {
+  return getUnderGraduateApplicants();
 }

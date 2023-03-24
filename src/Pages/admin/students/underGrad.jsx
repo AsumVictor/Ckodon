@@ -1,18 +1,11 @@
 import React, { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLoaderData } from "react-router-dom";
 import PeopleLink from "../../../Components/LinkToPeople";
+import { getUsers } from "../../../api";
 
 export default function UnderGrad() {
-  const [users, setUsers] = useState(null);
-
-  useEffect(() => {
-    fetch("/api/users")
-      .then((res) => res.json())
-      .then((data) => {
-        setUsers(data.users);
-      });
-  }, []);
-
+const users = useLoaderData()
+  
   return (
     <div className="flex flex-auto justify-around mt-5 flex-wrap px-3 md:px-10 ">
       {users &&
@@ -28,4 +21,8 @@ export default function UnderGrad() {
         ))}
     </div>
   );
+}
+
+export function loader(){
+  return getUsers()
 }
