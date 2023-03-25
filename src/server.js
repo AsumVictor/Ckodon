@@ -259,15 +259,7 @@ Morbi tempus iaculis urna id volutpat. Enim ut sem viverra aliquet eget. Gravida
         deadline: "feb 15, 2016",
         status: "approved",
       });
-      server.create("uGReview", {
-        id: nanoid(6),
-        student_id: "1",
-        date: "Mar 20, 2023",
-        status: "approved",
-        Honors:[
-          {}
-        ]
-      });
+     
     },
 
     //Routes for CRUD here

@@ -12,7 +12,7 @@ export default function UndergradReview() {
   const reviews = useLoaderData();
 
   let reviewDocument = typeFilter
-    ? reviews.filter((child) => child.type.toLowerCase() == typeFilter)
+    ? reviews.filter((child) => child.type.toLowerCase() === typeFilter)
     : reviews;
 
   function FilterSearch(key, value) {
@@ -80,7 +80,7 @@ export default function UndergradReview() {
                 <th scope="col" class="px-6 py-3">
                   NO.
                 </th>
-                
+
                 <th scope="col" class="px-6 py-3">
                   Document Type
                 </th>
@@ -105,7 +105,10 @@ export default function UndergradReview() {
                   >
                     {index + 1}
                   </th>
-                  <td class="px-6 py-4 capitalize font-bold"> {document.type}</td>
+                  <td class="px-6 py-4 capitalize font-bold">
+                    {" "}
+                    {document.type}
+                  </td>
                   <td
                     class={`px-6 py-4 capitalize ${
                       document.status == "pending"
@@ -117,7 +120,9 @@ export default function UndergradReview() {
                   >
                     {document.status}
                   </td>
-                  <td class="px-6 py-4 capitalize font-bold">{document.deadline}</td>
+                  <td class="px-6 py-4 capitalize font-bold">
+                    {document.deadline}
+                  </td>
                   <td class="px-6 py-4">{document.date}</td>
                   <td class="px-6 py-4">
                     <Link
