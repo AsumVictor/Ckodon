@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { useParams, Link, useLoaderData, useSearchParams } from "react-router-dom";
+import { useParams, Link, useLoaderData, useSearchParams, defer } from "react-router-dom";
 import { HiChevronLeft } from "react-icons/hi";
 import "../../../../css/studentAdmin.css";
 import { FilterButton } from "../../review/undergrad";
@@ -38,7 +38,7 @@ export default function StudentDetailsUnderGrad() {
       </Link>
 
       <section className="w-full py-3 md:px-10 flex flex-col">
-        {studentData && (
+        
           <div className="flex flex-auto md:w-10/12 self-center px-2 md:px-10 flex-wrap justify-center items-center gap-x-14 gap-y-5 mt-10 bg-gray-100 py-5 rounded-3xl">
             <div
               className="rounded-full bg-blue-200 overflow-hidden"
@@ -93,7 +93,7 @@ export default function StudentDetailsUnderGrad() {
               </p>
             </div>
           </div>
-        )}
+      
 
         <h2 className="self-center text-xl md:text-2xl font-bold mt-5 text-gray-500 underline">
           {` ${studentData.FirstName}'s Documents`}

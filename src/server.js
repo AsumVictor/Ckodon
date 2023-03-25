@@ -259,12 +259,12 @@ Morbi tempus iaculis urna id volutpat. Enim ut sem viverra aliquet eget. Gravida
         deadline: "feb 15, 2016",
         status: "approved",
       });
-     
     },
 
     //Routes for CRUD here
     routes() {
-      //ALL GET REQUESTS
+      
+
       this.get("/api/users", (schema) => {
         return schema.users.all();
       });
@@ -290,13 +290,11 @@ Morbi tempus iaculis urna id volutpat. Enim ut sem viverra aliquet eget. Gravida
         return schema.underGraduateApplicants.find(id);
       });
 
-
       //ALL POST REQUEST
       this.post("/api/honors", (schema, request) => {
-        let attrs = JSON.parse(request.requestBody)
-        return schema.honors.create(attrs)
-      })
-
+        let attrs = JSON.parse(request.requestBody);
+        return schema.honors.create(attrs);
+      });
     },
   });
 }

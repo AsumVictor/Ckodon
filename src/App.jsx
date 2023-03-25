@@ -54,7 +54,7 @@ import UndergradApplicantDetails, {
   loader as applicantDeatlsLoader_ug,
 } from "./Pages/admin/applicants/Details.jsx/UnderGradApplicantDetails";
 import StudentSpficDoc from "./Pages/admin/students/details/studentSpecificDoc";
-import RequireAuth from "./requireAuth";
+import Loader from "./Components/Loader";
 //defining routers
 const router = createBrowserRouter(
   createRoutesFromElements(
