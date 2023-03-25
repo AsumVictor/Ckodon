@@ -14,7 +14,7 @@ const users = useLoaderData()
           to={`${user.id}`}
           >
             <PeopleLink 
-            name={user.FullName}
+            name={`${user.FirstName} ${user.LastName}`}
             gender={user.Gender}
             />
           </Link>

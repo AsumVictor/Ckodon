@@ -28,6 +28,15 @@ body {
   overflow-x: hidden;
 }
 
+*::-webkit-scrollbar {
+  width: 5px;
+  background-color: rgba(156, 157, 228, 0.288);
+}
+
+*::-webkit-scrollbar-thumb{
+  background-color: rgb(59, 6, 184);
+
+}
 main {
   position: relative;
   font-size: 1rem;
@@ -265,7 +274,6 @@ main {
   .show .sideNav-li {
     justify-content: flex-start;
   }
-
 }
 
 @media screen and (min-width: 768px) {

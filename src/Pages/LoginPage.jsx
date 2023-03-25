@@ -203,7 +203,7 @@ export default function LoginPage() {
           </p>
         </form>
 
-        <Link to='/dashboard'
+        <Link to='/student-dashboard'
         className="mt-10 text-red-400  font-bold underline">
          Click this Temporary Link to dashboard
         </Link>

@@ -80,9 +80,7 @@ export default function UndergradReview() {
                 <th scope="col" class="px-6 py-3">
                   NO.
                 </th>
-                <th scope="col" class="px-6 py-3">
-                  ID
-                </th>
+                
                 <th scope="col" class="px-6 py-3">
                   Document Type
                 </th>
@@ -90,7 +88,10 @@ export default function UndergradReview() {
                   Status
                 </th>
                 <th scope="col" class="px-6 py-3">
-                  Date/Time
+                  Deadline
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Submitted on
                 </th>
                 <th scope="col" class="px-6 py-3"></th>
               </tr>
@@ -104,8 +105,7 @@ export default function UndergradReview() {
                   >
                     {index + 1}
                   </th>
-                  <td class="px-6 py-4">{document.id}</td>
-                  <td class="px-6 py-4 capitalize"> {document.type}</td>
+                  <td class="px-6 py-4 capitalize font-bold"> {document.type}</td>
                   <td
                     class={`px-6 py-4 capitalize ${
                       document.status == "pending"
@@ -117,6 +117,7 @@ export default function UndergradReview() {
                   >
                     {document.status}
                   </td>
+                  <td class="px-6 py-4 capitalize font-bold">{document.deadline}</td>
                   <td class="px-6 py-4">{document.date}</td>
                   <td class="px-6 py-4">
                     <Link

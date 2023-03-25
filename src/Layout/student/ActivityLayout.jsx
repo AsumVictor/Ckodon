@@ -30,15 +30,15 @@ export default function ActivityLayout() {
         </NavLink>
 
         <NavLink
-          to="Tips"
+          to="honors"
           className="text-15 capitalize md:text-18 font-bold px-4 text-MdBlue border-2 border-blue-600 rounded-md"
           style={({isActive})=> isActive? activeLink : null}
         >
-          Tips
+          Honors
         </NavLink>
 
         <NavLink
-          to="Honor-and-Activity"
+          to="activities"
           className="text-15 capitalize md:text-18 font-bold px-4 text-MdBlue border-2 border-blue-600 rounded-md"
           style={({isActive})=> isActive? activeLink : null}
         >

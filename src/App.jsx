@@ -16,7 +16,7 @@ import FinancialAidPage from "./Pages/student/financialAid/FinancialAidPage";
 import Review from "./Pages/student/Review";
 import ActivityLayout from "./Layout/student/ActivityLayout";
 import Construction from "./Pages/Construction";
-import ActivityTips from "./Pages/student/activity/ActivityTips";
+import ActivityTips from "./Pages/student/activity/honors";
 import ActivityOverview from "./Pages/student/activity/ActivityOverview";
 import ActivityPage from "./Pages/student/activity/ActivityPage";
 import EssaysLayout from "./Layout/student/essayLayout";
@@ -30,11 +30,14 @@ import StudentSharedLayout from "./Layout/admin/students/StudentSharedLayout";
 import ApplicantsLayout from "./Layout/admin/ApplicantsLayout";
 import AdminReview from "./Layout/admin/AdminReview";
 import UndergradReview, {
+  loader,
   loader as ugreviewLoader,
 } from "./Pages/admin/review/undergrad";
 import GradReview from "./Pages/admin/review/graduate";
 import Recommendations from "./Pages/student/recommendation/recommensation";
-import StudentDetailsUndergrad from "./Pages/admin/students/details/studentDetailsUnderGrad";
+import StudentDetailsUndergrad, {
+  getUserLoader,
+} from "./Pages/admin/students/details/studentDetailsUnderGrad";
 import AdminCurrentStudentLayout from "./Layout/admin/students/StudentLayout";
 import UnderGrad, {
   loader as userUnderGradLoader,
@@ -47,8 +50,11 @@ import UndergradApplicants, {
 } from "./Pages/admin/applicants/undergradApplicants";
 import DetailGraduateDoc from "./Pages/admin/review/details/DetailGrduateDoc";
 import DetailUndergradDoc from "./Pages/admin/review/details/DetailUnderGradDocument";
-import UndergradApplicantDetails from "./Pages/admin/applicants/Details.jsx/UnderGradApplicantDetails";
-
+import UndergradApplicantDetails, {
+  loader as applicantDeatlsLoader_ug,
+} from "./Pages/admin/applicants/Details.jsx/UnderGradApplicantDetails";
+import StudentSpficDoc from "./Pages/admin/students/details/studentSpecificDoc";
+import RequireAuth from "./requireAuth";
 //defining routers
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -60,13 +66,15 @@ const router = createBrowserRouter(
 
       {/* Student Dashboard */}
       <Route element={<StudentLayout />}>
-        <Route path="/dashboard" element={<Dashboard />} />
+        <Route path="/student-dashboard" element={<Dashboard />} />
+        //Activities which is both Honors and activities
 
-        <Route path="activities" element={<ActivityLayout />}>
+        <Route path="Honor-and-Activity" element={<ActivityLayout />}>
           <Route index element={<ActivityOverview />} />
-          <Route path="Tips" element={<ActivityTips />} />
-          <Route path="Honor-and-Activity" element={<ActivityPage />} />
+          <Route path="honors" element={<ActivityTips />} />
+          <Route path="activities" element={<ActivityPage />} />
         </Route>
+
         <Route path="Essays" element={<EssaysLayout />}>
           <Route index element={<EssayIntroductionPage />} />
           <Route path="Edit-Essays" element={<EditEssayPage />} />
@@ -100,7 +108,12 @@ const router = createBrowserRouter(
             <Route index element={<UnderGrad />} loader={userUnderGradLoader} />
             <Route path="graduate" element={<Gradute />} />
           </Route>
-          <Route path="students/:id" element={<StudentDetailsUndergrad />} />
+          <Route
+            path="students/:id"
+            element={<StudentDetailsUndergrad />}
+            loader={getUserLoader}
+          />
+          <Route path="students/:id/:id" element={<StudentSpficDoc />} />
           <Route
             path="students/graduate/:id"
             element={<StudentDetailsGradute />}
@@ -119,6 +132,7 @@ const router = createBrowserRouter(
         <Route
           path="New-applicants/:id"
           element={<UndergradApplicantDetails />}
+          loader={applicantDeatlsLoader_ug}
         />
         <Route path="New-applicants/graduate/:id" element={<Construction />} />
 

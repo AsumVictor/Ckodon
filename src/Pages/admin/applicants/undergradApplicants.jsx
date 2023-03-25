@@ -2,9 +2,11 @@ import React, { useState, useEffect } from "react";
 import { Link, useLoaderData } from "react-router-dom";
 import Loader from "../../../Components/Loader";
 import { getUnderGraduateApplicants } from "../../../api";
+import NoContent from "../../../Components/NoContent";
 
 export default function UndergradApplicants() {
   const applicants = useLoaderData();
+
 
   return (
     <>
@@ -40,7 +42,7 @@ export default function UndergradApplicants() {
                   >
                     {index + 1}
                   </th>
-                  <td class="px-6 py-4">
+                  <td class="px-6 py-4 text-gray-900 font-bold">
                     {`${applicant.FirstName} ${applicant.LastName}`}
                   </td>
                   <td class="px-6 py-4">{applicant.Location}</td>

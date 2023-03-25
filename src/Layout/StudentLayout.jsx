@@ -41,12 +41,12 @@ const StudentLayout = (props) => {
     {
       text: "Dashboard",
       icon: <HiHome />,
-      path: "/dashboard",
+      path: "/student-dashboard",
     },
     {
       text: "Activities",
       icon: <HiClipboardList />,
-      path: "/activities",
+      path: "/Honor-and-Activity",
     },
     {
       text: "Essays",
