@@ -2,10 +2,12 @@ import React, { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import Lottie from "lottie-react";
 import NoContent from "../../../animations/no file.json";
-import { HiOutlinePlus, HiArrowUpTray } from "react-icons/hi2";
+import { HiOutlinePlus, HiOutlineTrash } from "react-icons/hi2";
 
 export default function FinancialAid() {
-  const [aidData, setAidData] = useState(() => JSON.parse(localStorage.getItem("Aids")) ||[]);
+  const [aidData, setAidData] = useState(
+    () => JSON.parse(localStorage.getItem("Aids")) || []
+  );
 
   //Udate aid data
   useEffect(() => {
@@ -16,13 +18,12 @@ export default function FinancialAid() {
     const newSchoolAndAid = {
       id: nanoid(),
       schoolName: "",
-      TotalAnualIncome: '',
-      Totalsavings: '',
-      TotalExpenses: '',
-      EFC: '',
+      TotalAnualIncome: "",
+      Totalsavings: "",
+      TotalExpenses: "",
+      EFC: "",
     };
     setAidData((prevState) => [...prevState, newSchoolAndAid]);
-    console.log(aidData);
   }
 
   function HanldeInput(e, index) {
@@ -37,6 +38,11 @@ export default function FinancialAid() {
     });
   }
 
+  //Delete Aid data
+  function deleteAidDoc(_id) {
+    setAidData((prevData) => prevData.filter((aid) => aid.id !== _id));
+  }
+
   //Handle form Submit
   function HanldeFormSubmit(e) {
     e.preventDefault();
@@ -46,22 +52,6 @@ export default function FinancialAid() {
   return (
     <section className="flex items-center w-full flex-col justify-center pb-10 px-2">
       {/* Form Element */}
-
-      {aidData.length == 0 && (
-        <div className="mt-10 w-full flex flex-col justify-center items-center">
-          <div className="animation-box">
-            <Lottie
-              animationData={NoContent}
-              loop={false}
-              style={{ width: "250px" }}
-            />
-          </div>
-
-          <h1 className="font-bold text-2xl md:text-3xl text-center -mt-10 capitalize flex justify-center">
-            No aid Documents
-          </h1>
-        </div>
-      )}
 
       {aidData.length >= 1 && (
         <form
@@ -86,6 +76,13 @@ export default function FinancialAid() {
                                 invalid:border-red-800 invalid:placeholder-red-800"
                 />
                 <h3 className="text-white font-bold text-15">Status</h3>
+                <button
+                  type="button"
+                  onClick={() => deleteAidDoc(aiddata.id)}
+                  className="py-1 px-2 bg-red-100 text-red-600 font-bold text-2xl mx-2 rounded-md"
+                >
+                  <HiOutlineTrash />
+                </button>
               </aside>
 
               {/* Aid value and params */}

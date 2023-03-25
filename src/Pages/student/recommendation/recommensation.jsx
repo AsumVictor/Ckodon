@@ -2,28 +2,25 @@ import React, { useState, useEffect } from "react";
 import { nanoid } from "nanoid";
 import Lottie from "lottie-react";
 import NoContent from "../../../animations/no file.json";
-import { HiOutlinePlus, HiArrowUpTray } from "react-icons/hi2";
+import { HiOutlinePlus, HiOutlineTrash } from "react-icons/hi2";
 
 export default function Recommendations() {
-  const [recommendation, setRecommendation] = useState( () => JSON.parse(localStorage.getItem("Recommendation")) || []
+  const [recommendation, setRecommendation] = useState(
+    () => JSON.parse(localStorage.getItem("Recommendation")) || []
   );
 
-
   //Udate aid data
-   useEffect(() => {
-     localStorage.setItem("Recommendation", JSON.stringify(recommendation));
-   }, [recommendation]);
+  useEffect(() => {
+    localStorage.setItem("Recommendation", JSON.stringify(recommendation));
+  }, [recommendation]);
 
   function addSchoolAndAid() {
     const newRecommendaer = {
-      id: nanoid(),
+      id: nanoid(6),
       RecommenderName: "",
-      Letters:[
-        
-       ],
+      Letters: [],
     };
     setRecommendation((prevState) => [...prevState, newRecommendaer]);
-    console.log(recommendation);
   }
 
   //Handle Recommender input
@@ -39,31 +36,49 @@ export default function Recommendations() {
     });
   }
 
-  //Handle Lettes change 
-function hanldeLetterChange(e,index,letterIndex){
-  const {name, value} = e.target
-  setRecommendation(prevData=>{
-    let newState = [...prevData]
-    newState[index].Letters[letterIndex] = {...newState[index].Letters[letterIndex],
-     [name]: value
-    }
-    return newState
-  })
-}
-
+  //Handle Lettes change
+  function hanldeLetterChange(e, index, letterIndex) {
+    const { name, value } = e.target;
+    setRecommendation((prevData) => {
+      let newState = [...prevData];
+      newState[index].Letters[letterIndex] = {
+        ...newState[index].Letters[letterIndex],
+        [name]: value,
+      };
+      return newState;
+    });
+  }
 
   //Add new Recommendation Letter
-  function AddNewLetter(index){
+  function AddNewLetter(index) {
     const NewLetter = {
-        id: nanoid(),
-        letter: '',
-    }
-    setRecommendation( prevState=>{
-      const newState = [...prevState]
-      newState[index].Letters = [...newState[index].Letters, NewLetter,]
-      return newState
+      id: nanoid(6),
+      letter: "",
+    };
+    setRecommendation((prevState) => {
+      const newState = [...prevState];
+      newState[index].Letters = [...newState[index].Letters, NewLetter];
+      return newState;
+    });
+  }
 
-    })
+  //delete Recommender
+  function deleteRecommender(_id) {
+    setRecommendation((prevData) => {
+      const newData = prevData.filter((eachchild) => eachchild.id !== _id);
+      return newData;
+    });
+  }
+
+  //Delete recommendation Letter
+  function deleteletter(_id, index) {
+    setRecommendation((prevData) => {
+      let newState = [...prevData];
+      newState[index].Letters = newState[index].Letters.filter(
+        (letter) => letter.id !== _id
+      );
+      return newState;
+    });
   }
 
   //Handle form Submit
@@ -72,26 +87,9 @@ function hanldeLetterChange(e,index,letterIndex){
     console.log(recommendation.length);
   }
 
-
   return (
     <section className="flex items-center w-full flex-col justify-center pb-10 px-2">
       {/* Form Element */}
-
-      {recommendation.length == 0 && (
-        <div className="mt-10 w-full flex flex-col justify-center items-center">
-          <div className="animation-box">
-            <Lottie
-              animationData={NoContent}
-              loop={false}
-              style={{ width: "250px" }}
-            />
-          </div>
-
-          <h1 className="font-bold text-2xl md:text-3xl text-center -mt-10 capitalize flex justify-center">
-            No Recommendation Letter
-          </h1>
-        </div>
-      )}
 
       {recommendation.length >= 1 && (
         <form
@@ -101,8 +99,11 @@ function hanldeLetterChange(e,index,letterIndex){
           {/* Aid header with school */}
 
           {recommendation.map((recommendation, index) => (
-            <div key={recommendation.id} className="flex flex-col w-full border-2 border-MdBlue pb-10 rounded-md mt-10 overflow-hidden px-2 md:px-10">
-              <aside className="flex flex-row relative justify-between w-full py-3 bg-MdBlue items-center pl-3 pr-10 md:px-10 rounded-b-lg">
+            <div
+              key={recommendation.id}
+              className="flex flex-col w-full border-2 border-MdBlue pb-10 rounded-md mt-10 overflow-hidden px-2 md:px-10"
+            >
+              <aside className="flex flex-row relative justify-between w-full py-3 bg-MdBlue items-center px-2 md:px-10 rounded-b-lg">
                 <input
                   type="text"
                   name="RecommenderName"
@@ -116,22 +117,41 @@ function hanldeLetterChange(e,index,letterIndex){
                                 invalid:border-red-800 invalid:placeholder-red-800"
                 />
                 <h3 className="text-white font-bold text-15">Status</h3>
+                <button
+                  type="button"
+                  onClick={() => deleteRecommender(recommendation.id)}
+                  className="py-1 px-2 bg-red-100 text-red-600 font-bold text-2xl mx-2 rounded-md"
+                >
+                  <HiOutlineTrash />
+                </button>
               </aside>
 
               {/* Recommendation Letter*/}
               <div className="flex w-full flex-wrap px-2 justify-between md:px-10">
                 {recommendation.Letters.map((letter, letterIndex) => (
-                  <label className="w-full mt-5" key={letterIndex+1}>
-                    <span className="font-bold">{` Recommendation Letter ${letterIndex+1} `}</span>
-                    <br />
+                  <label className="w-full mt-5" key={letter.id}>
+                    <div className="flex flex-row px-1 md:px-5 py-2 justify-between items-center bg-MdBlue text-white">
+                      <div className="font-bold">{` Recommendation ${
+                        letterIndex + 1
+                      } `}</div>
+                      <button
+                        type="button"
+                        onClick={() => deleteletter(letter.id, index)}
+                        className="py-1 px-2 bg-red-100 text-red-600 font-bold text-2xl mx-2 rounded-md"
+                      >
+                        <HiOutlineTrash />
+                      </button>
+                    </div>
                     <textarea
                       name="Letter"
                       rows={17}
                       required
-                      onChange={(e)=>hanldeLetterChange(e,letterIndex,index)}
+                      onChange={(e) =>
+                        hanldeLetterChange(e, letterIndex, index)
+                      }
                       value={recommendation.Letters.letter}
                       placeholder="Paste the Draft letter here"
-                      className="text-black w-full md:w-12/12 border-2 rounded-2xl border-MdBlue500  invalid:border-red-800 px-2 outline-MdBlue"
+                      className="text-black mt-1 w-full border-2 rounded-md border-MdBlue500  invalid:border-red-800 px-2 outline-MdBlue"
                     />
                   </label>
                 ))}
@@ -141,7 +161,7 @@ function hanldeLetterChange(e,index,letterIndex){
                 className="px-5 py-2 bg-white hover:bg-MdBlue hover:text-white flex flex-row
                            justify-center items-center text-MdBlue font-bold rounded-md
                            mx-5 mt-10 self-center"
-                onClick={()=>AddNewLetter(index)}
+                onClick={() => AddNewLetter(index)}
               >
                 <HiOutlinePlus />
                 Add New Letter

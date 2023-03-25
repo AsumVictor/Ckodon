@@ -1,9 +1,22 @@
 import React, { useState } from "react";
 import Lottie from "lottie-react";
 import NoContent from "../../animations/no file.json";
+import { Link, useSearchParams } from "react-router-dom";
 
 export default function Review() {
-  const [activeTab, setactiveTab] = useState(1);
+  const [searchParams, setSearchParams] = useSearchParams();
+  const typeFilter = searchParams.get("type");
+
+  function FilterSearch(key, value) {
+    setSearchParams((prevParams) => {
+      if (value == null) {
+        prevParams.delete(key);
+      } else {
+        prevParams.set(key, value);
+      }
+      return prevParams;
+    });
+  }
 
   return (
     <section className="w-full py-3 relative flex flex-col items-center overflow-x-hidden">
@@ -15,133 +28,127 @@ export default function Review() {
         commment
       </p>
 
-      {/* Content */}
-      <div className="flex flex-col w-full mt-10">
-        {/* TABS*/}
-        <div className="tabs flex flex-row justify-start md:justify-center px-3 w-full overflow-x-scroll bg-blue-100">
-          <div
-            className={`px-2 py-2 border-2 border-MdBlue ${
-              activeTab == 1 ? "bg-MdBlue text-white" : "bg-white text-MdBlue"
-            }  m-3 whitespace-nowrap transition-5 text-18 font-bold cursor-pointer rounded-md`}
-            onClick={() => setactiveTab(1)}
-          >
-            <p>Activity and Hornors</p>
-          </div>
-          <div
-            className={`px-2 py-2 border-2 border-MdBlue ${
-              activeTab == 2 ? "bg-MdBlue text-white" : "bg-white text-MdBlue"
-            }  m-3 whitespace-nowrap transition-all text-18 font-bold cursor-pointer rounded-md`}
-            onClick={() => setactiveTab(2)}
-          >
-            <p>Personal Essays</p>
-          </div>
-          <div
-            className={`px-2 py-2 border-2 border-MdBlue ${
-              activeTab == 3 ? "bg-MdBlue text-white" : "bg-white text-MdBlue"
-            }  m-3 whitespace-nowrap transition-5 text-18 font-bold cursor-pointer rounded-md`}
-            onClick={() => setactiveTab(3)}
-          >
-            <p>Recommendations</p>
-          </div>
-          <div
-            className={`px-2 py-2 border-2 border-MdBlue ${
-              activeTab == 4 ? "bg-MdBlue text-white" : "bg-white text-MdBlue"
-            }  m-3 whitespace-nowrap transition-5 text-18 font-bold cursor-pointer rounded-md`}
-            onClick={() => setactiveTab(4)}
-          >
-            Financial Aid
-          </div>
-        </div>
+      <div className="flex flex-auto justify-center gap-3 mt-10 flex-wrap">
+        <FilterButton
+          text="honors"
+          handleFilter={FilterSearch}
+          type={"honors"}
+           typeFilter={typeFilter}
+        />
+        <FilterButton
+          text="activities"
+          handleFilter={FilterSearch}
+          type={"activities"}
+           typeFilter={typeFilter}
+        />
+        <FilterButton
+          text="essays"
+          handleFilter={FilterSearch}
+          type={"essays"}
+           typeFilter={typeFilter}
+        />
+        <FilterButton
+          text="financial aid"
+          handleFilter={FilterSearch}
+          type={"financial aid"}
+           typeFilter={typeFilter}
+        />
+        <FilterButton
+          text="recommendations"
+          handleFilter={FilterSearch}
+          type={"recommendation"}
+           typeFilter={typeFilter}
+        />
+
+        <button
+          className="text-red-500 underline"
+          onClick={() => FilterSearch("type", null)}
+        >
+          Clear Filter
+        </button>
       </div>
 
-      {/* Reviewed Documents content */}
-      {activeTab == 1 && (
-        <div className="w-full py-3 mt-10 pb-10 flex flex-col justify-center">
-          <p className="text-MdBlue text-center font-bold text-18 underline capitalize">
-            Activity and Honor Documents
-          </p>
+      {/* Table to show Review Document */}
+     
+        <div class="w-full relative overflow-x-auto mt-10 shadow-md sm:rounded-lg">
+          <table class="w-full text-sm text-left text-gray-500 dark:text-gray-400">
+            <thead class="text-xs text-blue-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+              <tr>
+                <th scope="col" class="px-6 py-3">
+                  NO.
+                </th>
 
-          <div className="mt-10 w-full flex flex-col justify-center items-center">
-            <div className="animation-box">
-              <Lottie
-                animationData={NoContent}
-                loop={false}
-                style={{ width: "250px" }}
-              />
-            </div>
+                <th scope="col" class="px-6 py-3">
+                  Document Type
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Status
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Deadline
+                </th>
+                <th scope="col" class="px-6 py-3">
+                  Submitted on
+                </th>
+                <th scope="col" class="px-6 py-3"></th>
+              </tr>
+            </thead>
+            <tbody>
 
-            <h1 className="font-bold text-18 md:text-2xl text-center -mt-10 capitalize flex justify-center">
-              No Reviewed Documents
-            </h1>
-          </div>
+          
+                <tr class="bg-white border-b-2 hover:bg-gray-100 cursor-pointer dark:bg-gray-900 dark:border-gray-700">
+                  <th
+                    scope="row"
+                    class="px-6 py-4 font-bold text-gray-900 whitespace-nowrap dark:text-white"
+                  >
+                    1
+                  </th>
+                  <td class="px-6 py-4 capitalize font-bold">
+                    
+                    {document.type}
+                  </td>
+                  <td
+                    class={`px-6 py-4 capitalize ${
+                      document.status == "pending"
+                        ? "text-blue-500"
+                        : document.status == "approved"
+                        ? "text-green-500"
+                        : "text-red-500"
+                    }`}
+                  >
+                    {document.status}
+                  </td>
+                  <td class="px-6 py-4 capitalize font-bold">
+                    {document.deadline}
+                  </td>
+                  <td class="px-6 py-4">{document.date}</td>
+                  <td class="px-6 py-4">
+                    <Link
+                      to={`${document.id}`}
+                      class="font-medium text-blue-600 dark:text-blue-500 hover:underline"
+                    >
+                      Review
+                    </Link>
+                  </td>
+                </tr>
+              
+            </tbody>
+          </table>
         </div>
-      )}
-
-      {activeTab == 2 && (
-        <div className="w-full py-3 mt-10 pb-10 flex flex-col justify-center">
-          <p className="text-MdBlue text-center font-bold text-18 underline capitalize">
-            Personal Essay Documents
-          </p>
-
-          <div className="mt-10 w-full flex flex-col justify-center items-center">
-            <div className="animation-box">
-              <Lottie
-                animationData={NoContent}
-                loop={false}
-                style={{ width: "250px" }}
-              />
-            </div>
-
-            <h1 className="font-bold text-18 md:text-2xl text-center -mt-10 capitalize flex justify-center">
-              No Reviewed Documents
-            </h1>
-          </div>
-        </div>
-      )}
-
-      {activeTab == 3 && (
-        <div className="w-full py-3 mt-10 pb-10 flex flex-col justify-center">
-          <p className="text-MdBlue text-center font-bold text-18 underline capitalize">
-            Recommendation Letters
-          </p>
-
-          <div className="mt-10 w-full flex flex-col justify-center items-center">
-            <div className="animation-box">
-              <Lottie
-                animationData={NoContent}
-                loop={false}
-                style={{ width: "250px" }}
-              />
-            </div>
-
-            <h1 className="font-bold text-18 md:text-2xl text-center -mt-10 capitalize flex justify-center">
-              No Reviewed Documents
-            </h1>
-          </div>
-        </div>
-      )}
-
-      {activeTab == 4 && (
-        <div className="w-full py-3 mt-10 pb-10 flex flex-col justify-center">
-          <p className="text-MdBlue text-center font-bold text-18 underline capitalize">
-            Financial Aid Documents
-          </p>
-
-          <div className="mt-10 w-full flex flex-col justify-center items-center">
-            <div className="animation-box">
-              <Lottie
-                animationData={NoContent}
-                loop={false}
-                style={{ width: "250px" }}
-              />
-            </div>
-
-            <h1 className="font-bold text-18 md:text-2xl text-center -mt-10 capitalize flex justify-center">
-              No Reviewed Documents
-            </h1>
-          </div>
-        </div>
-      )}
+  
     </section>
+  );
+}
+
+function FilterButton(props) {
+  return (
+    <button
+      onClick={() => props.handleFilter("type", `${props.type}`)}
+      className={`py-1 px-3 ${
+        props.typeFilter == props.type ? "bg-red-100" : null
+      } capitalize whitespace-nowrap rounded-md font-semibold border-2 border-red-100`}
+    >
+      {props.text}
+    </button>
   );
 }
