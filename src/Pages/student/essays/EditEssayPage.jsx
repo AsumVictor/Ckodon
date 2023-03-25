@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import Lottie from "lottie-react";
 import NoContent from "../../../animations/no file.json";
 import { HiOutlinePlus, HiArrowUpTray } from "react-icons/hi2";
+import { nanoid } from "nanoid";
 
 export default function EssayForm() {
   const [schools, setSchools] = useState(
@@ -15,7 +16,7 @@ export default function EssayForm() {
 
   const addSchool = () => {
     const newSchool = {
-      id: schools.length + 1,
+      id: nanoid(6),
       schoolName: "",
       essays: [],
     };
@@ -60,6 +61,25 @@ export default function EssayForm() {
     });
   };
 
+  //Delete School and Its Essays
+  function deleteSchool(id) {
+    setSchools((prevData) => {
+      const newData = prevData.filter((school) => school.id !== id);
+      return newData;
+    });
+  }
+
+  //Delete Essay
+  function deleteEssay(essayId, schoolIndex) {
+    setSchools((prevData) => {
+      let newState = [...prevData];
+      newState[schoolIndex].essays = newState[schoolIndex].essays.filter(
+        (essay) => essay.id !== essayId
+      );
+      return newState
+    });
+  }
+
   const handleSubmit = (event) => {
     event.preventDefault();
     console.log(schools);
@@ -68,21 +88,6 @@ export default function EssayForm() {
   return (
     <section className="flex items-center w-full flex-col justify-center pb-20 px-2">
       {/* Appear when there is Essay */}
-      {schools.length == 0 && (
-        <div className="mt-10 w-full flex flex-col justify-center items-center">
-          <div className="animation-box">
-            <Lottie
-              animationData={NoContent}
-              loop={false}
-              style={{ width: "250px" }}
-            />
-          </div>
-
-          <h1 className="font-bold text-2xl md:text-3xl text-center -mt-10 capitalize flex justify-center">
-            No Essay
-          </h1>
-        </div>
-      )}
 
       {/* School form here */}
       {schools.length >= 1 && (
@@ -113,6 +118,13 @@ export default function EssayForm() {
                                  md:text-20 outline-none bg-transparent"
                   />
                   <h3 className="text-white font-bold text-15">Status</h3>
+                  <button
+                    type="button"
+                    onClick={() => deleteSchool(school.id)}
+                    className="text-red-600 font-bold bg-red-100 rounded-lg px-2 py-2 mx-2"
+                  >
+                    Delete
+                  </button>
                 </aside>
 
                 {/* Essays here  */}
@@ -120,15 +132,22 @@ export default function EssayForm() {
                 {school.essays.map((essay, essayIndex) => (
                   <div
                     key={essay.id}
-                    className="w-full mt-10 border-t-2 border-b-2 border-MdBlue rounded-md overflow-hidden"
+                    className="w-full mt-10 border-2 border-MdBlue"
                   >
-                    <div className=" w-full flex justify-center bg-MdBlue ">
+                    <div className=" w-full flex justify-between  py-2 px-5 items-center bg-MdBlue ">
                       <h3 className="text-white font-bold text-18">
                         Essay {essayIndex + 1}
                       </h3>
+                      <button
+                        type="button"
+                        onClick={() => deleteEssay(essay.id, schoolIndex)}
+                        className="px-3 py-2 bg-red-100 text-red-600 font-bold rounded-md"
+                      >
+                        Delete Essay
+                      </button>
                     </div>
 
-                    <div className="w-full px-3 md:px-8 bg-gray-200 shadow-md">
+                    <div className="w-full px-3 md:px-8  shadow-md">
                       <label className="w-full">
                         <span className="font-bold">Essay Question</span> <br />
                         <textarea
