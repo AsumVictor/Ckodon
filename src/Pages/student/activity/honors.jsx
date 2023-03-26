@@ -1,11 +1,15 @@
 import React, { useState, useEffect } from "react";
+import { useLoaderData } from "react-router-dom";
 import { HiOutlinePlus } from "react-icons/hi2";
 import { HiTrash } from "react-icons/hi";
 import { nanoid } from "nanoid";
+import { getUserHonor } from "../../../api";
 
 export default function ActivityTips() {
+  const loaderData = useLoaderData()
+  console.log(loaderData.honors);
   const [Honor, setHonor] = useState(
-    JSON.parse(localStorage.getItem("Honors")) || []
+    loaderData.honors || []
   ); //Honors List
 
   //Handle Honor Data value
@@ -52,21 +56,10 @@ export default function ActivityTips() {
     e.preventDefault();
   }
 
-  //  Save to Database
-  // async function Save() {
-  // try {
-  //   const res = await fetch("/api/users", {method:'POST', body: JSON.stringify({
-
-  //   })})
-  // } catch (error) {
-
-  // }
-  // }
-
   // save form DATA to local storage
-  useEffect(() => {
-    localStorage.setItem("Honors", JSON.stringify(Honor));
-  }, [Honor]);
+  // useEffect(() => {
+  //   localStorage.setItem("Honors", JSON.stringify(Honor));
+  // }, [Honor]);
 
   return (
     <section className="w-full flex flex-col relative px-2 md:px-10">
@@ -340,4 +333,8 @@ export default function ActivityTips() {
       </form>
     </section>
   );
+}
+
+export function HonorLoader(){
+  return getUserHonor('4Kc_sY')
 }

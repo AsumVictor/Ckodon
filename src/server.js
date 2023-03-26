@@ -1,19 +1,29 @@
-import { createServer, Model } from "miragejs";
+import { createServer, Model, hasMany, belongsTo } from "miragejs";
 import { nanoid } from "nanoid";
 
 export default function () {
   createServer({
     models: {
-      user: Model,
+      user: Model.extend({
+        uGReviews: hasMany(),
+        honors: hasMany(),
+      }),
+
       underGraduateApplicant: Model,
-      uGReview: Model,
-      honor: Model,
+
+      uGReview: Model.extend({
+        user: belongsTo(),
+      }),
+
+      honor: Model.extend({
+        user: belongsTo(),
+      }),
     },
 
     //Initial Values
     seeds(server) {
       server.create("user", {
-        id: nanoid(6),
+        id: "guS6Fg",
         FirstName: "Asum",
         LastName: " Victor",
         Email: "Yoguay@grtg.com",
@@ -27,7 +37,7 @@ export default function () {
         updated: true,
       });
       server.create("user", {
-        id: nanoid(6),
+        id: "RGdI1k",
         FirstName: "Opoku",
         LastName: " Ware",
         Email: "Yoguay@grtg.com",
@@ -41,7 +51,7 @@ export default function () {
         updated: false,
       });
       server.create("user", {
-        id: nanoid(6),
+        id: "zIrle4",
         FirstName: "Agyeiwaa",
         LastName: " Victoria",
         Email: "Yoguay@grtg.com",
@@ -54,7 +64,7 @@ export default function () {
         Phone: "65466464356",
       });
       server.create("user", {
-        id: nanoid(6),
+        id: "BrjKeO",
         FirstName: "Aksum",
         LastName: " Empire",
         Email: "seleson@grtg.com",
@@ -259,12 +269,46 @@ Morbi tempus iaculis urna id volutpat. Enim ut sem viverra aliquet eget. Gravida
         deadline: "feb 15, 2016",
         status: "approved",
       });
+
+      //For Honors
+      server.create("honor", {
+        id: '4Kc_sY',
+        student_id: "1",
+        status: "Pending",
+        mode: "editing",
+        honors: [
+          {
+            id: "x6TePg",
+            title: "Testing Honor",
+            Grade9: true,
+            Grade10: false,
+            Grade11: true,
+            Grade12: false,
+            School: true,
+            Region: false,
+            National: true,
+            International: false,
+            GradePost: true,
+          },
+          {
+            id: "bwfTNN",
+            title: "Testing Honor 2",
+            Grade9: false,
+            Grade10: true,
+            Grade11: true,
+            Grade12: false,
+            School: true,
+            Region: true,
+            National: false,
+            International: false,
+            GradePost: false,
+          },
+        ],
+      });
     },
 
     //Routes for CRUD here
     routes() {
-      
-
       this.get("/api/users", (schema) => {
         return schema.users.all();
       });
@@ -276,6 +320,8 @@ Morbi tempus iaculis urna id volutpat. Enim ut sem viverra aliquet eget. Gravida
       this.get("/api/uGReviews", (schema) => {
         return schema.uGReviews.all();
       });
+
+
       //Find specific GET with id
 
       this.get("/api/users/:id", (schema, request) => {
@@ -288,6 +334,12 @@ Morbi tempus iaculis urna id volutpat. Enim ut sem viverra aliquet eget. Gravida
         let id = request.params.id;
 
         return schema.underGraduateApplicants.find(id);
+      });
+
+      this.get("/api/honors/:id", (schema, request) => {
+        let id = request.params.id;
+
+        return schema.honors.find(id);
       });
 
       //ALL POST REQUEST

@@ -16,7 +16,7 @@ import FinancialAidPage from "./Pages/student/financialAid/FinancialAidPage";
 import Review from "./Pages/student/Review";
 import ActivityLayout from "./Layout/student/ActivityLayout";
 import Construction from "./Pages/Construction";
-import ActivityTips from "./Pages/student/activity/honors";
+import ActivityTips, { HonorLoader } from "./Pages/student/activity/honors";
 import ActivityOverview from "./Pages/student/activity/ActivityOverview";
 import ActivityPage from "./Pages/student/activity/ActivityPage";
 import EssaysLayout from "./Layout/student/essayLayout";
@@ -55,6 +55,7 @@ import UndergradApplicantDetails, {
 } from "./Pages/admin/applicants/Details.jsx/UnderGradApplicantDetails";
 import StudentSpficDoc from "./Pages/admin/students/details/studentSpecificDoc";
 import Loader from "./Components/Loader";
+import Error from "./Components/Error";
 //defining routers
 const router = createBrowserRouter(
   createRoutesFromElements(
@@ -68,13 +69,15 @@ const router = createBrowserRouter(
       <Route element={<StudentLayout />}>
         <Route path="/student-dashboard" element={<Dashboard />} />
         //Activities which is both Honors and activities
-
         <Route path="Honor-and-Activity" element={<ActivityLayout />}>
           <Route index element={<ActivityOverview />} />
-          <Route path="honors" element={<ActivityTips />} />
+          <Route
+            path="honors"
+            element={<ActivityTips />}
+            loader={HonorLoader}
+          />
           <Route path="activities" element={<ActivityPage />} />
         </Route>
-
         <Route path="Essays" element={<EssaysLayout />}>
           <Route index element={<EssayIntroductionPage />} />
           <Route path="Edit-Essays" element={<EditEssayPage />} />
@@ -112,8 +115,13 @@ const router = createBrowserRouter(
             path="students/:id"
             element={<StudentDetailsUndergrad />}
             loader={getUserLoader}
+            errorElement={<Error />}
           />
-          <Route path="students/:id/:id" element={<StudentSpficDoc />} />
+          <Route
+            path="students/:id/:id"
+            element={<StudentSpficDoc />}
+            errorElement={<Error />}
+          />
           <Route
             path="students/graduate/:id"
             element={<StudentDetailsGradute />}
@@ -126,6 +134,7 @@ const router = createBrowserRouter(
             index
             element={<UndergradApplicants />}
             loader={ugApplicantsLoader}
+            errorElement={<Error />}
           />
           <Route path="graduate" element={<GraduatesApplicants />} />
         </Route>
@@ -133,6 +142,7 @@ const router = createBrowserRouter(
           path="New-applicants/:id"
           element={<UndergradApplicantDetails />}
           loader={applicantDeatlsLoader_ug}
+          errorElement={<Error />}
         />
         <Route path="New-applicants/graduate/:id" element={<Construction />} />
 
