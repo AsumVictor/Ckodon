@@ -15,6 +15,7 @@ export default function UndergradReview() {
   const [searchParams, setSearchParams] = useSearchParams();
   const typeFilter = searchParams.get("type");
   const loadedData = useLoaderData();
+  console.log(loadedData);
 
   function FilterSearch(key, value) {
     setSearchParams((prevParams) => {
@@ -69,6 +70,7 @@ export default function UndergradReview() {
             Clear Filter
           </button>
         </div>
+
       <Suspense fallback={<Loader />}>
         <Await resolve={loadedData.reviews}>
           {(reviews) => {

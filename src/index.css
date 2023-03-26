@@ -252,6 +252,12 @@ main {
   background-color: rgba(1, 5, 63, 0.432);
 }
 
+input:disabled {
+  border-color: red;
+  outline-color: red;
+}
+
+
 @media screen and (max-width: 768px) {
   .header.space-toggle,
   .navbar.space-toggle {

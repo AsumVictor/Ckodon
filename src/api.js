@@ -69,7 +69,7 @@ export async function getApplicantDeatal_Ug(id) {
 }
 
 export async function getUserHonor(id) {
-    const res = await fetch(`/api/honors/${id}`)
+    const res = await fetch(`/api/users/${id}/honors`)
     if (!res.ok) {
         throw {
             message: "Failed to fetch Honor", 
@@ -78,7 +78,7 @@ export async function getUserHonor(id) {
         }
     }
     const data = await res.json()
-    return data.honor
+    return data?.honor || null 
 }
 
-//4Kc_sY
+

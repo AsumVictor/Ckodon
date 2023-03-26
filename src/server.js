@@ -1,4 +1,4 @@
-import { createServer, Model, hasMany, belongsTo } from "miragejs";
+import { createServer, Model, hasMany, belongsTo, Response } from "miragejs";
 import { nanoid } from "nanoid";
 
 export default function () {
@@ -6,7 +6,7 @@ export default function () {
     models: {
       user: Model.extend({
         uGReviews: hasMany(),
-        honors: hasMany(),
+        honors: belongsTo(),
       }),
 
       underGraduateApplicant: Model,
@@ -22,13 +22,13 @@ export default function () {
 
     //Initial Values
     seeds(server) {
-      server.create("user", {
+      let asum = server.create("user", {
         id: "guS6Fg",
         FirstName: "Asum",
         LastName: " Victor",
         Email: "Yoguay@grtg.com",
         Password: "erg5hg676jg54g54g56h67jh",
-        UserRole: "Admin",
+        UserRole: "undergrad",
         Location: "Kumasi",
         DateOfBirth: " 10/21/1231",
         School: "Dadiaso Shs",
@@ -179,136 +179,116 @@ Morbi tempus iaculis urna id volutpat. Enim ut sem viverra aliquet eget. Gravida
       });
 
       //Seeds for Review Documents
-      server.create("uGReview", {
-        id: nanoid(6),
-        student_id: "1",
-        document_id: "1",
-        type: "financial aid",
-        date: "Feb 20, 2022",
-        deadline: "feb 15, 2016",
-        status: "pending",
-      });
-      server.create("uGReview", {
-        id: nanoid(6),
-        student_id: "1",
-        document_id: "1",
-        type: "Honors",
-        date: "Feb 20, 2022",
-        deadline: "feb 15, 2016",
-        status: "approved",
-      });
-      server.create("uGReview", {
-        id: nanoid(6),
-        student_id: "3",
-        document_id: "1",
-        type: "Activities",
-        date: "Feb 20, 2022",
-        deadline: "feb 15, 2016",
-        status: "rejected",
-      });
-      server.create("uGReview", {
-        id: nanoid(6),
-        student_id: "2",
-        document_id: "6",
-        type: "recommendation",
-        date: "Feb 20, 2022",
-        deadline: "feb 15, 2016",
-        status: "approved",
-      });
-      server.create("uGReview", {
-        id: nanoid(6),
-        student_id: "1",
-        document_id: "4",
-        type: "essays",
-        date: "Feb 20, 2022",
-        deadline: "feb 15, 2016",
-        status: "rejected",
-      });
-      server.create("uGReview", {
-        id: nanoid(6),
-        student_id: "1",
-        document_id: "3",
-        type: "financial aid",
-        date: "Feb 20, 2022",
-        deadline: "feb 15, 2016",
-        status: "pending",
-      });
-      server.create("uGReview", {
-        id: nanoid(6),
-        student_id: "1",
-        document_id: "1",
-        type: "Honors",
-        date: "Feb 20, 2022",
-        deadline: "feb 15, 2016",
-        status: "approved",
-      });
-      server.create("uGReview", {
-        id: nanoid(6),
-        student_id: "3",
-        document_id: "1",
-        type: "Activities",
-        date: "Feb 20, 2022",
-        deadline: "feb 15, 2016",
-        status: "approved",
-      });
-      server.create("uGReview", {
-        id: nanoid(6),
-        student_id: "2",
-        document_id: "6",
-        type: "recommendation",
-        date: "Feb 20, 2022",
-        deadline: "feb 15, 2016",
-        status: "pending",
-      });
-      server.create("uGReview", {
-        id: nanoid(6),
-        student_id: "1",
-        document_id: "4",
-        type: "recommendation",
-        date: "Mar 20, 2023",
-        deadline: "feb 15, 2016",
-        status: "approved",
-      });
+       server.create("uGReview", {
+         id: nanoid(6),
+         student_id: "1",
+         document_id: "1",
+         type: "financial aid",
+         date: "Feb 20, 2022",
+         deadline: "feb 15, 2016",
+         status: "pending",
+       });
+       server.create("uGReview", {
+         id: nanoid(6),
+         student_id: "1",
+         document_id: "1",
+         type: "Honors",
+         date: "Feb 20, 2022",
+         deadline: "feb 15, 2016",
+         status: "approved",
+       });
+       server.create("uGReview", {
+         id: nanoid(6),
+         student_id: "3",
+         document_id: "1",
+         type: "Activities",
+         date: "Feb 20, 2022",
+         deadline: "feb 15, 2016",
+         status: "rejected",
+       });
+       server.create("uGReview", {
+         id: nanoid(6),
+         student_id: "2",
+         document_id: "6",
+         type: "recommendation",
+         date: "Feb 20, 2022",
+         deadline: "feb 15, 2016",
+         status: "approved",
+       });
+       server.create("uGReview", {
+         id: nanoid(6),
+         student_id: "1",
+         document_id: "4",
+         type: "essays",
+         date: "Feb 20, 2022",
+         deadline: "feb 15, 2016",
+         status: "rejected",
+       });
+       server.create("uGReview", {
+         id: nanoid(6),
+         student_id: "1",
+         document_id: "3",
+         type: "financial aid",
+         date: "Feb 20, 2022",
+         deadline: "feb 15, 2016",
+         status: "pending",
+       });
+       server.create("uGReview", {
+         id: nanoid(6),
+         student_id: "1",
+         document_id: "1",
+         type: "Honors",
+         date: "Feb 20, 2022",
+         deadline: "feb 15, 2016",
+         status: "approved",
+       });
+       server.create("uGReview", {
+         id: nanoid(6),
+         student_id: "3",
+         document_id: "1",
+         type: "Activities",
+         date: "Feb 20, 2022",
+         deadline: "feb 15, 2016",
+         status: "approved",
+       });
+       server.create("uGReview", {
+         id: nanoid(6),
+         student_id: "2",
+         document_id: "6",
+         type: "recommendation",
+         date: "Feb 20, 2022",
+         deadline: "feb 15, 2016",
+         status: "pending",
+       });
+       server.create("uGReview", {
+         id: nanoid(6),
+         student_id: "1",
+         document_id: "4",
+         type: "recommendation",
+         date: "Mar 20, 2023",
+         deadline: "feb 15, 2016",
+         status: "approved",
+       });
 
       //For Honors
-      server.create("honor", {
-        id: '4Kc_sY',
-        student_id: "1",
-        status: "Pending",
-        mode: "editing",
-        honors: [
-          {
-            id: "x6TePg",
-            title: "Testing Honor",
-            Grade9: true,
-            Grade10: false,
-            Grade11: true,
-            Grade12: false,
-            School: true,
-            Region: false,
-            National: true,
-            International: false,
-            GradePost: true,
-          },
-          {
-            id: "bwfTNN",
-            title: "Testing Honor 2",
-            Grade9: false,
-            Grade10: true,
-            Grade11: true,
-            Grade12: false,
-            School: true,
-            Region: true,
-            National: false,
-            International: false,
-            GradePost: false,
-          },
-        ],
-      });
+        server.create("honor", {
+          id: "4Kc_sY",
+          user: asum,
+          status: "Pending",
+          mode: "editing",
+          honors: [
+           
+          ],
+        })
+
+
     },
 
     //Routes for CRUD here
     routes() {
+
+       this.timing = 2000
+
       this.get("/api/users", (schema) => {
         return schema.users.all();
       });
@@ -320,7 +300,6 @@ Morbi tempus iaculis urna id volutpat. Enim ut sem viverra aliquet eget. Gravida
       this.get("/api/uGReviews", (schema) => {
         return schema.uGReviews.all();
       });
-
 
       //Find specific GET with id
 
@@ -342,11 +321,37 @@ Morbi tempus iaculis urna id volutpat. Enim ut sem viverra aliquet eget. Gravida
         return schema.honors.find(id);
       });
 
-      //ALL POST REQUEST
-      this.post("/api/honors", (schema, request) => {
-        let attrs = JSON.parse(request.requestBody);
-        return schema.honors.create(attrs);
+      //ALL PATCH REQUEST
+      this.patch("/api/honors/:id", (schema, request) => {
+          let atrr = JSON.parse(request.requestBody);
+          let id = request.params.id;
+          let honor = schema.honors.find(id);
+          return honor.update(atrr);
+         // return new Response(400, {}, {error: "Error fetching data"})
       });
+      //END OF POST
+
+      //FIND ELEMENT WITH ID FROM OTHER
+      //FIND from Honors with Student ID
+      this.get("/api/users/:id/honors", (schema, request) => {
+        let userId = request.params.id;
+        let user = schema.users.find(userId);
+
+        return user.honors;
+      });
+
+      //POST Elements
+      this.post("/api/honors", (schema, request) => {
+        let attrs = JSON.parse(request.requestBody)
+      
+        return schema.honors.create(attrs)
+      })
+
+      this.post("/api/uGReviews", (schema, request) => {
+        let attrs = JSON.parse(request.requestBody)
+      
+        return schema.uGReviews.create(attrs)
+      })
     },
   });
 }
