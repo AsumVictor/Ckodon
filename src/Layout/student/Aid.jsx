@@ -1,5 +1,6 @@
 import React from "react";
 import { NavLink, Outlet } from "react-router-dom";
+import Animation from "../../Components/MainAnimate";
 
 export default function FinancialAIdLayout() {
 
@@ -9,7 +10,7 @@ export default function FinancialAIdLayout() {
     }
 
   return (
-    <>
+    <Animation>
       <div className="flex flex-row w-full justify-center items-center py-1">
         <h3 className="font-bold text-15 text-2xl md:text-3xl text-center text-MdBlue underline capitalize">
           Financial Documents
@@ -39,6 +40,6 @@ export default function FinancialAIdLayout() {
 
       </div>
       <Outlet />
-    </>
+    </Animation>
   );
 }

@@ -179,6 +179,15 @@ Morbi tempus iaculis urna id volutpat. Enim ut sem viverra aliquet eget. Gravida
       });
 
       //Seeds for Review Documents
+      server.create("uGReview", {
+        id: nanoid(6),
+        student_id: "1",
+        document_id: "1",
+        type: "Honors",
+        date: "Feb 20, 2022",
+        deadline: "feb 15, 2016",
+        status: "Pending",
+      });
        server.create("uGReview", {
          id: nanoid(6),
          student_id: "1",
@@ -187,15 +196,6 @@ Morbi tempus iaculis urna id volutpat. Enim ut sem viverra aliquet eget. Gravida
          date: "Feb 20, 2022",
          deadline: "feb 15, 2016",
          status: "pending",
-       });
-       server.create("uGReview", {
-         id: nanoid(6),
-         student_id: "1",
-         document_id: "1",
-         type: "Honors",
-         date: "Feb 20, 2022",
-         deadline: "feb 15, 2016",
-         status: "approved",
        });
        server.create("uGReview", {
          id: nanoid(6),

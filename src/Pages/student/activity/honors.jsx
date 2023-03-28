@@ -7,6 +7,7 @@ import { nanoid } from "nanoid";
 import Loader from "../../../Components/Loader";
 import { getUserHonor } from "../../../api";
 import "../../../css/loader.css";
+import TabTransition from "../../../Components/TabTransition";
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
@@ -19,10 +20,9 @@ export default function ActivityTips() {
     savingState == "Saving" ||
     creatingState == "Creating" ||
     navigation == "submitting";
-  
 
   return (
-    <>
+    <TabTransition>
       <section className="w-full flex flex-col relative px-2 md:px-10">
         <h1 className="self-center mt-2 text-2xl text-MdBlue font-semibold">
           My Honor Lists
@@ -148,8 +148,7 @@ export default function ActivityTips() {
                       progress: undefined,
                       theme: "colored",
                     });
-                  })
-        
+                  });
               }
 
               //Hanlde form Submitt
@@ -171,8 +170,8 @@ export default function ActivityTips() {
                   body: JSON.stringify(Review),
                 })
                   .then((res) => {
-                    submittedMode()
-                    getUserHonor("guS6Fg")
+                    submittedMode();
+                    getUserHonor("guS6Fg");
                     if (res.ok) {
                       toast.success("Susbmitted for reviews", {
                         position: "bottom-right",
@@ -280,7 +279,7 @@ export default function ActivityTips() {
               return (
                 <>
                   {/* Show when Student Data is in the Honor table */}
-                  {(Honor.length && studentHonors.mode == "editing") && (
+                  {(Honor.length || studentHonors) && (
                     <form className="self-center w-full md:w-8/12 flex items-center flex-col pb-20">
                       <div
                         className="honors--wrapper w-full flex flex-col justify-start items-center
@@ -603,7 +602,7 @@ export default function ActivityTips() {
                   )}
 
                   {/* Show when Student Honor is zero or Student Data is not in the Honor table */}
-                  {(!Honor.length || !studentHonors) && (
+                  {!Honor.length && !studentHonors && (
                     <>
                       <NoContent message="No Honor" />
                       <button
@@ -625,7 +624,6 @@ export default function ActivityTips() {
                       </button>
                     </>
                   )}
-                  
                 </>
               );
             }}
@@ -634,7 +632,7 @@ export default function ActivityTips() {
       </section>
 
       <ToastContainer />
-    </>
+    </TabTransition>
   );
 }
 

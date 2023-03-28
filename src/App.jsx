@@ -6,6 +6,7 @@ import {
   Route,
 } from "react-router-dom";
 import "./App.css";
+import { AnimatePresence } from "framer-motion";
 
 import StudentLayout from "./Layout/StudentLayout";
 import ApplyPage from "./Pages/ApplyPage";
@@ -57,115 +58,133 @@ import StudentSpficDoc from "./Pages/admin/students/details/studentSpecificDoc";
 import Loader from "./Components/Loader";
 import Error from "./Components/Error";
 //defining routers
+
 const router = createBrowserRouter(
   createRoutesFromElements(
-    <Route>
-      <Route path="/" element={<LoginPage />} />
-      <Route path="/login" element={<LoginPage />} />
-      <Route path="/apply" element={<ApplyPage />} />
-      <Route path="*" element={<ErrorPage />} />
+      <Route>
+        <Route path="/" element={<LoginPage />} />
+        <Route path="/login" element={<LoginPage />} />
+        <Route path="/apply" element={<ApplyPage />} />
+        <Route path="*" element={<ErrorPage />} />
 
-      {/* Student Dashboard */}
-      <Route element={<StudentLayout />}>
-        <Route path="/student-dashboard" element={<Dashboard />} />
-        //Activities which is both Honors and activities
-        <Route path="Honor-and-Activity" element={<ActivityLayout />}>
-          <Route index element={<ActivityOverview />} />
-          <Route
-            path="honors"
-            element={<ActivityTips />}
-            loader={HonorLoader}
-          />
-          <Route path="activities" element={<ActivityPage />} />
+        {/* Student Dashboard */}
+
+        <Route element={<StudentLayout />}>
+          <Route path="/student-dashboard" element={<Dashboard />} />
+          //Activities which is both Honors and activities
+          <Route path="Honor-and-Activity" element={<ActivityLayout />}>
+            <Route index element={<ActivityOverview />} />
+            <Route
+              path="honors"
+              element={<ActivityTips />}
+              loader={HonorLoader}
+            />
+            <Route path="activities" element={<ActivityPage />} />
+          </Route>
+          <Route path="Essays" element={<EssaysLayout />}>
+            <Route index element={<EssayIntroductionPage />} />
+            <Route path="Edit-Essays" element={<EditEssayPage />} />
+          </Route>
+          <Route path="financial-aid" element={<FinancialAIdLayout />}>
+            <Route index element={<EssayIntroductionPage />} />
+            <Route
+              path="edit-financial-documents"
+              element={<FinancialAidPage />}
+            />
+          </Route>
+          <Route path="recommendation" element={<RecomendationLayout />}>
+            <Route index element={<EssayIntroductionPage />} />
+            <Route path="invite" element={<Recommendations />} />
+          </Route>
+          <Route path="interview" element={<InterviewLayout />}>
+            <Route index element={<Construction />} />
+          </Route>
+          <Route path="Reviews" element={<Review />} />
+          <Route path="notification" element={<ErrorPage />} />
+          <Route path="chat" element={<ErrorPage />} />
         </Route>
-        <Route path="Essays" element={<EssaysLayout />}>
-          <Route index element={<EssayIntroductionPage />} />
-          <Route path="Edit-Essays" element={<EditEssayPage />} />
-        </Route>
-        <Route path="financial-aid" element={<FinancialAIdLayout />}>
-          <Route index element={<EssayIntroductionPage />} />
-          <Route
-            path="edit-financial-documents"
-            element={<FinancialAidPage />}
-          />
-        </Route>
-        <Route path="recommendation" element={<RecomendationLayout />}>
-          <Route index element={<EssayIntroductionPage />} />
-          <Route path="invite" element={<Recommendations />} />
-        </Route>
-        <Route path="interview" element={<InterviewLayout />}>
+        {/* //Admin Route */}
+        <Route path="/admin" element={<AdminLayout />}>
           <Route index element={<Construction />} />
-        </Route>
-        <Route path="Reviews" element={<Review />} />
-        <Route path="notification" element={<ErrorPage />} />
-        <Route path="chat" element={<ErrorPage />} />
-      </Route>
-
-      {/* //Admin Route */}
-      <Route path="/admin" element={<AdminLayout />}>
-        <Route index element={<Construction />} />
-        <Route element={<AdminCurrentStudentLayout />}>
-          {/* Students Documents: It contains Graduate and Undergradute Students. 
+          <Route element={<AdminCurrentStudentLayout />}>
+            {/* Students Documents: It contains Graduate and Undergradute Students. 
             When click on Gradute will take to new page to display student ingo */}
-          <Route path="students" element={<StudentSharedLayout />}>
-            <Route index element={<UnderGrad />} loader={userUnderGradLoader} />
-            <Route path="graduate" element={<Gradute />} />
+            <Route path="students" element={<StudentSharedLayout />}>
+              <Route
+                index
+                element={<UnderGrad />}
+                loader={userUnderGradLoader}
+              />
+              <Route path="graduate" element={<Gradute />} />
+            </Route>
+            <Route
+              path="students/:id"
+              element={<StudentDetailsUndergrad />}
+              loader={getUserLoader}
+              errorElement={<Error />}
+            />
+            <Route
+              path="students/:id/:id"
+              element={<StudentSpficDoc />}
+              errorElement={<Error />}
+            />
+            <Route
+              path="students/graduate/:id"
+              element={<StudentDetailsGradute />}
+            />
+          </Route>
+
+          {/* New Applicants to Admin Board */}
+          <Route path="New-applicants" element={<ApplicantsLayout />}>
+            <Route
+              index
+              element={<UndergradApplicants />}
+              loader={ugApplicantsLoader}
+              errorElement={<Error />}
+            />
+            <Route path="graduate" element={<GraduatesApplicants />} />
           </Route>
           <Route
-            path="students/:id"
-            element={<StudentDetailsUndergrad />}
-            loader={getUserLoader}
+            path="New-applicants/:id"
+            element={<UndergradApplicantDetails />}
+            loader={applicantDeatlsLoader_ug}
             errorElement={<Error />}
           />
           <Route
-            path="students/:id/:id"
-            element={<StudentSpficDoc />}
-            errorElement={<Error />}
+            path="New-applicants/graduate/:id"
+            element={<Construction />}
           />
-          <Route
-            path="students/graduate/:id"
-            element={<StudentDetailsGradute />}
-          />
+
+          {/* Reviewed Activities */}
+          <Route path="reviews" element={<AdminReview />}>
+            <Route
+              index
+              element={<UndergradReview />}
+              loader={ugreviewLoader}
+            />
+            <Route path="graduate" element={<GradReview />} />
+          </Route>
+          <Route path="reviews/:id" element={<DetailUndergradDoc />} />
+          <Route path="reviews/graduate/:id" element={<DetailGraduateDoc />} />
+
+          <Route path="sat-students" element={<Construction />} />
+          <Route path="sat-students/:name" element={<Construction />} />
+
+          <Route path="broadcast" element={<Construction />} />
+          <Route path="chat" element={<Construction />} />
         </Route>
-
-        {/* New Applicants to Admin Board */}
-        <Route path="New-applicants" element={<ApplicantsLayout />}>
-          <Route
-            index
-            element={<UndergradApplicants />}
-            loader={ugApplicantsLoader}
-            errorElement={<Error />}
-          />
-          <Route path="graduate" element={<GraduatesApplicants />} />
-        </Route>
-        <Route
-          path="New-applicants/:id"
-          element={<UndergradApplicantDetails />}
-          loader={applicantDeatlsLoader_ug}
-          errorElement={<Error />}
-        />
-        <Route path="New-applicants/graduate/:id" element={<Construction />} />
-
-        {/* Reviewed Activities */}
-        <Route path="reviews" element={<AdminReview />}>
-          <Route index element={<UndergradReview />} loader={ugreviewLoader} />
-          <Route path="graduate" element={<GradReview />} />
-        </Route>
-        <Route path="reviews/:id" element={<DetailUndergradDoc />} />
-        <Route path="reviews/graduate/:id" element={<DetailGraduateDoc />} />
-
-        <Route path="sat-students" element={<Construction />} />
-        <Route path="sat-students/:name" element={<Construction />} />
-
-        <Route path="broadcast" element={<Construction />} />
-        <Route path="chat" element={<Construction />} />
       </Route>
-    </Route>
   )
 );
 
+
+
 function App() {
-  return <RouterProvider router={router} />;
+  return (
+    <AnimatePresence mode="wait" initial='false' >
+    <RouterProvider router={router} key={location.pathname} location={location}/>
+    </AnimatePresence>
+)
 }
 
 export default App;

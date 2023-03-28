@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 import Navbar from "../Components/Navbar";
 import SideNav from "../Components/Sidenav";
-import { NavLink, Link, Outlet } from "react-router-dom";
+import { NavLink, Link, Outlet, useLocation } from "react-router-dom";
 import NoticationIcon from "../Components/notificationIcon";
+
 import {
   HiCurrencyDollar,
   HiHome,
@@ -86,9 +87,10 @@ const StudentLayout = (props) => {
   ];
 
   const activeStyles = {
-    backgroundColor: 'white',
+    backgroundColor: "white",
     color: "#2455fe",
   };
+
 
   const sidelinks = links.map((sidelink) => {
     return (
@@ -97,8 +99,8 @@ const StudentLayout = (props) => {
         to={`${sidelink.path}`}
         style={({ isActive }) => (isActive ? activeStyles : null)}
       >
-          {sidelink.icon}
-          <span className="ml-2">{sidelink.text}</span>
+        {sidelink.icon}
+        <span className="ml-2">{sidelink.text}</span>
       </NavLink>
     );
   });
@@ -150,9 +152,14 @@ const StudentLayout = (props) => {
         <h3 className="text-left text-white font-bold text-2xl">Asum Victor</h3>
         <ul className="mt-10">{sidelinks}</ul>
       </SideNav>
-      <div className={`content relative p-0 w-full ${show ? "space-toggle2" : null}`}>
+      <div
+        className={`content relative p-0 w-full ${
+          show ? "space-toggle2" : null
+        }`}
+      >
         {/* for pages */}
-        <Outlet />
+       
+          <Outlet/>
       </div>
     </main>
   );
